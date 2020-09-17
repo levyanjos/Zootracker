@@ -9,37 +9,22 @@ class TrilhasView extends StatelessWidget {
     return CustomNavBar(
       text: "Tab 1",
       uniqueHeroTag: 'tab1',
-      child: Container(
-        color: Colors.redAccent,
-        child: Center(
-          child: RaisedButton(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  !Platform.isIOS
-                      ? CupertinoPageRoute(
-                    builder: (context) => PurplePage(),
-                  )
-                      : MaterialPageRoute(
-                    builder: (context) => PurplePage(),
-                  ));
-            },
-            child: Text('Go to test page', style: TextStyle(fontSize: 20)),
-          ),
-        ),
-      ),
+      body: TilhasContainerView()
     );
   }
 }
 
-class PurplePage extends StatelessWidget {
-  @override
+class TilhasContainerView extends StatelessWidget {
+
   Widget build(BuildContext context) {
-    return CustomNavBar(
-      text: "Tab 1",
-      uniqueHeroTag: 'purplePage',
-      child: Container(
-        color: Colors.deepPurple,
+    return Scaffold(
+      body: Center(child: Text('You have pressed the button times.')),
+      floatingActionButton: Padding(
+        padding: const EdgeInsets.only(bottom: 50.0),
+        child: FloatingActionButton(
+          tooltip: 'Increment Counter',
+          child: const Icon(Icons.add),
+        ),
       ),
     );
   }

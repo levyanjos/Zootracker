@@ -8,13 +8,13 @@ class CustomNavBar extends StatelessWidget {
 
   final TextStyle style;
   final String uniqueHeroTag;
-  final Widget child;
+  final Widget body;
 
   CustomNavBar({
     this.text,
     this.style,
     this.uniqueHeroTag,
-    this.child,
+    this.body,
   });
 
   @override
@@ -22,12 +22,13 @@ class CustomNavBar extends StatelessWidget {
     if (!Platform.isIOS) {
       return Scaffold(
         appBar: AppBar(
+          centerTitle: false,
           title: Text(
             text,
             style: style,
           ),
         ),
-        body: child,
+        body: body,
       );
     } else {
       return CupertinoPageScaffold(
@@ -39,7 +40,7 @@ class CustomNavBar extends StatelessWidget {
             style: style,
           ),
         ),
-        child: child,
+        child: body,
       );
     }
   }
