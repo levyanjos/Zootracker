@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:zootracker/View/Trilhas/TrilhasView.dart';
 import 'package:zootracker/main.dart';
 
 class CustomTabBar extends StatefulWidget {
@@ -26,38 +27,29 @@ class CustomTabBarState extends State<CustomTabBar> {
           if (index == 0) {
             return CupertinoTabView(
               navigatorKey: firstTabNavKey,
-              builder: (BuildContext context) => MyFirstTab(),
+              builder: (BuildContext context) => TrilhasView(),
             );
           } else if (index == 1) {
             return CupertinoTabView(
               navigatorKey: secondTabNavKey,
-              builder: (BuildContext context) => MyFirstTab(),
+              builder: (BuildContext context) => TrilhasView(),
             );
           } else if (index == 2) {
             return CupertinoTabView(
               navigatorKey: thirdTabNavKey,
-              builder: (BuildContext context) => MyFirstTab(),
+              builder: (BuildContext context) => TrilhasView(),
             );
           } else if (index == 3) {
             return CupertinoTabView(
               navigatorKey: fourthTabNavKey,
-              builder: (BuildContext context) => MyFirstTab(),
+              builder: (BuildContext context) => TrilhasView(),
             );
           } else {
             return CupertinoTabView(
               navigatorKey: fifthTabNavKey,
-              builder: (BuildContext context) => MyFirstTab(),
+              builder: (BuildContext context) => TrilhasView(),
             );
           }
         });
-  }
-}
-
-class MyFirstTab extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      color: Colors.redAccent,
-    );
   }
 }
