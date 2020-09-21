@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:zootracker/View/Components/CustomTabBar.dart';
+import 'package:zootracker/View/Components/Bars/CustomTabBar.dart';
+
 
 
 final GlobalKey<NavigatorState> firstTabNavKey = GlobalKey<NavigatorState>();
