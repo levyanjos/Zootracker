@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:zootracker/Model/Trail.dart';
 import 'package:zootracker/View/Components/CustomNavBar.dart';
+import 'package:zootracker/View/CreateTrails/CreateTrails.dart';
 import 'package:zootracker/View/Trails/TrailsCell.dart';
 
 class TrailsView extends StatelessWidget {
@@ -36,6 +39,17 @@ class TrailsContainerView extends StatelessWidget {
         child: FloatingActionButton(
           tooltip: 'Increment Counter',
           child: const Icon(Icons.add),
+          onPressed: () {
+            Navigator.push(
+                context,
+                !Platform.isIOS
+                    ? CupertinoPageRoute(
+                  builder: (context) => CreateTrails(),
+                )
+                    : MaterialPageRoute(
+                  builder: (context) => CreateTrails(),
+                ));
+          },
         ),
       ),
     );
