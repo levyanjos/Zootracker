@@ -22,11 +22,11 @@ class _CreateTrailsState extends State<CreateTrails> {
   Widget build(BuildContext context) {
     return CustomNavBar(
         text: "Criar Trilha",
-        uniqueHeroTag: "121312312",
+        uniqueHeroTag: "createTrailsNavBar",
         body: Scaffold(
           body: Container(
             child: Padding(
-              padding: const EdgeInsets.only(top: 8),
+              padding: const EdgeInsets.only(top: 16),
               child: ListView(
                 children: <Widget>[
                   TextInputField(
@@ -39,6 +39,10 @@ class _CreateTrailsState extends State<CreateTrails> {
                     title: "Data:",
                     date: selectedDate,
                     controller: dateController,
+                  ),
+                  TextInputField(
+                    title: "Anotações:",
+                    numberOfLines: 6,
                   ),
                 ],
               ),

@@ -7,10 +7,10 @@ class CustomTabBar extends StatefulWidget {
    CustomTabBar({Key key}) : super(key: key);
 
   @override
-  CustomTabBarState createState() => CustomTabBarState();
+  _CustomTabBarState createState() => _CustomTabBarState();
 }
 
-class CustomTabBarState extends State<CustomTabBar> {
+class _CustomTabBarState extends State<CustomTabBar> {
   Widget build(BuildContext context) {
     return CupertinoTabScaffold(
         tabBar: CupertinoTabBar(items: [
