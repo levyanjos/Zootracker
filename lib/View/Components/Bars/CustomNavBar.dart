@@ -9,12 +9,18 @@ class CustomNavBar extends StatelessWidget {
   final TextStyle style;
   final String uniqueHeroTag;
   final Widget body;
+  final Widget trailing;
+  final Widget leading;
+  final List<Widget> actions;
 
   CustomNavBar({
     this.text,
     this.style,
     this.uniqueHeroTag,
     this.body,
+    this.trailing,
+    this.leading,
+    this.actions
   });
 
   @override
@@ -27,6 +33,7 @@ class CustomNavBar extends StatelessWidget {
             text,
             style: style,
           ),
+          actions: actions,
         ),
         body: body,
       );
@@ -39,6 +46,8 @@ class CustomNavBar extends StatelessWidget {
             text,
             style: style,
           ),
+          trailing: trailing,
+          leading: leading,
         ),
         child: body,
       );
