@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zootracker/View/Components/Bars/CustomTabBar.dart';
 
 
+
 final GlobalKey<NavigatorState> firstTabNavKey = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> secondTabNavKey = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> thirdTabNavKey = GlobalKey<NavigatorState>();
