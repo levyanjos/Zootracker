@@ -51,6 +51,7 @@ class _CreateTrailsState extends State<CreateTrails> {
             child: ListView(
               children: <Widget>[
                 CustomImagePicker(
+                  isEnable: true,
                   image: trailBanner,
                 ),
                 TextInputField(
