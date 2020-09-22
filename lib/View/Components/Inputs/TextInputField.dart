@@ -6,27 +6,30 @@ class TextInputField extends StatefulWidget {
   final String title;
   final String placeholder;
   final int numberOfLines;
-  TextEditingController controller;
+  final bool isReadOnly;
+  final TextEditingController controller;
 
   TextInputField(
-      {this.title, this.placeholder, this.numberOfLines, this.controller});
+      {this.title, this.placeholder, this.numberOfLines, this.controller, this.isReadOnly});
 
   @override
   _TextInputFieldState createState() => _TextInputFieldState(
       title: this.title,
       placeholder: this.placeholder,
       numberOfLines: this.numberOfLines,
-      controller: this.controller);
+      controller: this.controller,
+      isReadOnly: this.isReadOnly);
 }
 
 class _TextInputFieldState extends State<TextInputField> {
   final String title;
   final String placeholder;
   final int numberOfLines;
+  final bool isReadOnly;
   TextEditingController controller;
 
   _TextInputFieldState(
-      {this.title, this.placeholder, this.numberOfLines, this.controller});
+      {this.title, this.placeholder, this.numberOfLines, this.controller, this.isReadOnly});
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +55,13 @@ class _TextInputFieldState extends State<TextInputField> {
                         border: OutlineInputBorder(),
                         labelText: placeholder ?? ''),
                     maxLines: numberOfLines ?? 1,
+                    readOnly: this.isReadOnly,
                   )
                 : CupertinoTextField(
                     controller: controller,
                     placeholder: placeholder ?? '',
                     maxLines: numberOfLines ?? 1,
+                    readOnly: this.isReadOnly,
                   ),
           )
         ],

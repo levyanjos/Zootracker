@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:zootracker/Model/Trail.dart';
 import 'package:zootracker/View/Components/Bars/CustomNavBar.dart';
-import 'package:zootracker/View/CreateTrails/CreateTrails.dart';
+import 'package:zootracker/View/CreateTrail/CreateTrailView.dart';
 import 'package:zootracker/View/Trails/TrailsCell.dart';
 
 class TrailsView extends StatelessWidget {

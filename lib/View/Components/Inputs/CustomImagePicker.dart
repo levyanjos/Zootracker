@@ -63,7 +63,7 @@ class _CustomImagePickerState extends State<CustomImagePicker> {
                             child: Center(child: Icon(Icons.camera))),
                       ],
                     )
-                  : null,
+                  : Container(),
             ],
           ),
         ),

@@ -7,26 +7,29 @@ class DateInputField extends StatefulWidget {
   String title;
   String placeholder;
   DateTime date;
+  bool isEnable;
   TextEditingController controller;
 
-  DateInputField({this.title, this.date, this.placeholder, this.controller});
+  DateInputField({this.title, this.date, this.placeholder, this.controller, this.isEnable});
 
   @override
   _DateInputFieldState createState() => _DateInputFieldState(
       title: this.title,
       date: this.date,
       placeholder: this.placeholder,
-      controller: this.controller);
+      controller: this.controller,
+      isEnable: this.isEnable);
 }
 
 class _DateInputFieldState extends State<DateInputField> {
   String title;
   String placeholder;
   DateTime date;
+  bool isEnable;
   TextEditingController controller;
 
   _DateInputFieldState(
-      {this.title, this.date, this.placeholder, this.controller});
+      {this.title, this.date, this.placeholder, this.controller, this.isEnable});
 
   _selectDate(BuildContext context) async {
     final DateTime picked = await showDatePicker(
@@ -62,7 +65,7 @@ class _DateInputFieldState extends State<DateInputField> {
             child: !Platform.isIOS
                 ? TextField(
                     controller: controller,
-                    onTap: () => _selectDate(context),
+                    onTap: () => isEnable ? _selectDate(context) : null,
                     decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: placeholder ?? ''),
@@ -70,7 +73,7 @@ class _DateInputFieldState extends State<DateInputField> {
                   )
                 : CupertinoTextField(
                     controller: controller,
-                    onTap: () => _selectDate(context),
+                    onTap: () => isEnable ? _selectDate(context) : null,
                     placeholder: placeholder ?? '',
                     readOnly: true,
                   ),
