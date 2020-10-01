@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:zootracker/View/Camera/CameraView.dart';
 import 'package:zootracker/View/Trails/TrailsView.dart';
 import 'package:zootracker/main.dart';
 
@@ -32,7 +33,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
           } else if (index == 1) {
             return CupertinoTabView(
               navigatorKey: secondTabNavKey,
-              builder: (BuildContext context) => TrailsView(),
+              builder: (BuildContext context) => CameraView(),
             );
           } else if (index == 2) {
             return CupertinoTabView(
