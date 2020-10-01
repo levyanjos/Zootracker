@@ -46,7 +46,6 @@ class _DetailsTrailViewState extends State<DetailsTrailView> {
               ),
             ],
           ),
-        ),
       ),
       actions: <Widget>[
         BarButtonItem(
