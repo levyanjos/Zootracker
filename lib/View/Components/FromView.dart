@@ -7,17 +7,19 @@ import 'package:zootracker/ViewControllers/FormViewController.dart';
 
 class FormView extends StatefulWidget {
   final FormViewController controller;
+  final Widget footerWidget;
 
-  FormView({this.controller});
+  FormView({this.controller, this.footerWidget});
 
   @override
-  _FormViewState createState() => _FormViewState(controller: this.controller);
+  _FormViewState createState() => _FormViewState(controller: this.controller, footerWidget: footerWidget);
 }
 
 class _FormViewState extends State<FormView> {
   final FormViewController controller;
+  final Widget footerWidget;
 
-  _FormViewState({this.controller});
+  _FormViewState({this.controller, this.footerWidget});
 
   @override
   Widget build(BuildContext context) {
@@ -53,6 +55,8 @@ class _FormViewState extends State<FormView> {
                 title: "Anotações:",
                 numberOfLines: 6,
               ),
+              footerWidget ?? Container()
+
             ],
           ),
         ),
