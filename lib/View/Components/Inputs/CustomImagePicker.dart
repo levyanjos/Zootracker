@@ -12,7 +12,6 @@ class CustomImagePicker extends StatefulWidget {
   @override
   _CustomImagePickerState createState() =>
       _CustomImagePickerState(image: this.image, isEnable: this.isEnable);
-
 }
 
 class _CustomImagePickerState extends State<CustomImagePicker> {
@@ -22,7 +21,6 @@ class _CustomImagePickerState extends State<CustomImagePicker> {
   final picker = ImagePicker();
 
   _CustomImagePickerState({this.image, this.isEnable});
-
 
   Future getImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
