@@ -56,7 +56,6 @@ class _FormViewState extends State<FormView> {
                 numberOfLines: 6,
               ),
               footerWidget ?? Container()
-
             ],
           ),
         ),
