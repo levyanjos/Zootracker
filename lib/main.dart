@@ -1,7 +1,8 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zootracker/View/Components/Bars/CustomTabBar.dart';
-
-
 
 final GlobalKey<NavigatorState> firstTabNavKey = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> secondTabNavKey = GlobalKey<NavigatorState>();
@@ -17,14 +18,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: CustomTabBar(),
-      debugShowCheckedModeBanner: false,
-    );
+    return Platform.isIOS
+        ? CupertinoApp(
+            title: 'Flutter Demo',
+            theme: CupertinoThemeData(
+              primaryColor: Colors.blue,
+            ),
+            home: CustomTabBar(),
+            debugShowCheckedModeBanner: false,
+          )
+        : MaterialApp(
+            title: 'Flutter Demo',
+            theme: ThemeData(
+              primarySwatch: Colors.blue,
+              visualDensity: VisualDensity.adaptivePlatformDensity,
+            ),
+            home: CustomTabBar(),
+            debugShowCheckedModeBanner: false,
+          );
   }
 }
