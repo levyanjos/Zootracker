@@ -4,6 +4,7 @@ import 'dart:typed_data';
 import 'package:esys_flutter_share/esys_flutter_share.dart';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart';
+import 'package:zootracker/View/Camera/TrailsSelectionListView.dart';
 import 'package:zootracker/View/Components/BarButtonItem.dart';
 import 'package:zootracker/View/Components/Bars/CustomNavBar.dart';
 
@@ -41,21 +42,22 @@ class _PreviewImageScreenState extends State<PreviewImageScreen> {
           callBack: () => {
             _showAlertDialog(
               context,
-              'Deseja salvar a imagem na galeria ou em uma trilha',
+              'Deseja salvar a imagem na galeria ou em uma trilha?',
               <Widget>[
-                FlatButton(
-                  child: Text("Galeria"),
-                  onPressed: () {
-                    getBytesFromFile().then((bytes) {
-                      Share.file('Share via:', basename(widget.imagePath),
-                          bytes.buffer.asUint8List(), 'image/png');
-                    });
-                  },
-                ),
-                FlatButton(
-                  child: Text("Trilha"),
-                  onPressed: () {},
-                ),
+                _createAlertAction(
+                    Text("Galeria"), () {
+                  Navigator.of(context, rootNavigator: true).pop('dialog');
+                  getBytesFromFile().then((bytes) {
+                    Share.file('Share via:', basename(widget.imagePath),
+                        bytes.buffer.asUint8List(), 'image/png');
+                  });
+                }),
+                _createAlertAction(
+                    Text("Trilha"), () {
+                  Navigator.of(context, rootNavigator: true).pop('dialog');
+                  _pushToCorrectPresentation(
+                      context, false, TrailsSelectionListView());
+                })
               ],
             )
           },
@@ -70,22 +72,18 @@ class _PreviewImageScreenState extends State<PreviewImageScreen> {
               context,
               'Deseja descartar o registro?',
               <Widget>[
-                FlatButton(
-                  child: Text(
-                    "Descartar",
-                    style: TextStyle(color: Colors.red),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context, rootNavigator: true).pop('dialog');
-                    Navigator.pop(context);
-                  },
-                ),
-                FlatButton(
-                  child: Text("Cancelar"),
-                  onPressed: () {
-                    Navigator.of(context, rootNavigator: true).pop('dialog');
-                  },
-                ),
+                _createAlertAction(
+                    Text(
+                      "Descartar",
+                      style: TextStyle(color: Colors.red),
+                    ), () {
+                  Navigator.of(context, rootNavigator: true).pop('dialog');
+                  Navigator.pop(context);
+                }),
+                _createAlertAction(
+                    Text("Cancelar"), () {
+                  Navigator.of(context, rootNavigator: true).pop('dialog');
+                }),
               ],
             )
           },
@@ -100,16 +98,59 @@ class _PreviewImageScreenState extends State<PreviewImageScreen> {
   }
 
   _showAlertDialog(BuildContext context, String title, List<Widget> buttons) {
-    AlertDialog alerta = AlertDialog(
-      title: Text(title),
-      actions: buttons,
-    );
+    if (Platform.isIOS) {
+      var alert = CupertinoAlertDialog(
+        title: Text(title),
+        actions: buttons,
+      );
 
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alerta;
-      },
-    );
+      showCupertinoDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+    } else {
+      var alert = AlertDialog(
+        title: Text(title),
+        actions: buttons,
+      );
+
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return alert;
+        },
+      );
+    }
+  }
+
+  _createAlertAction(Widget child, Function action) {
+    if (Platform.isIOS) {
+      return CupertinoDialogAction(
+        child: child,
+        onPressed: action,
+      );
+    } else {
+      return FlatButton(
+        child: child,
+        onPressed: action,
+      );
+    }
+  }
+
+  _pushToCorrectPresentation(
+      BuildContext context, bool isFullScreen, Widget screem) {
+    Navigator.push(
+        context,
+        Platform.isIOS
+            ? CupertinoPageRoute(
+                fullscreenDialog: isFullScreen,
+                builder: (context) => screem,
+              )
+            : MaterialPageRoute(
+                fullscreenDialog: isFullScreen,
+                builder: (context) => screem,
+              ));
   }
 }
