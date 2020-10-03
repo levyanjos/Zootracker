@@ -1,6 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:zootracker/Model/Trail.dart';
 import 'package:zootracker/View/Camera/CameraView.dart';
+import 'package:zootracker/View/Search/SearchView.dart';
 import 'package:zootracker/View/Trails/TrailsView.dart';
 import 'package:zootracker/main.dart';
 
@@ -28,7 +31,10 @@ class _CustomTabBarState extends State<CustomTabBar> {
           if (index == 0) {
             return CupertinoTabView(
               navigatorKey: firstTabNavKey,
-              builder: (BuildContext context) => TrailsView(),
+              builder: (BuildContext context) => ChangeNotifierProvider<TrailsViewModel>(
+                create: (_) => TrailsViewModel()..loadTrails(),
+                child: TrailsView(),
+              ),
             );
           } else if (index == 1) {
             return CupertinoTabView(
@@ -38,14 +44,12 @@ class _CustomTabBarState extends State<CustomTabBar> {
           } else if (index == 2) {
             return CupertinoTabView(
               navigatorKey: thirdTabNavKey,
-              builder: (BuildContext context) => TrailsView(),
+              builder: (BuildContext context) => ChangeNotifierProvider<TrailsViewModel>(
+                create: (_) => TrailsViewModel()..loadTrails(),
+                child: SearchView(),
+              ),
             );
-          } else if (index == 3) {
-            return CupertinoTabView(
-              navigatorKey: fourthTabNavKey,
-              builder: (BuildContext context) => TrailsView(),
-            );
-          } else {
+          }  else {
             return CupertinoTabView(
               navigatorKey: fifthTabNavKey,
               builder: (BuildContext context) => TrailsView(),

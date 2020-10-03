@@ -21,7 +21,7 @@ class _PreviewImageScreenState extends State<PreviewImageScreen> {
   @override
   Widget build(BuildContext context) {
     return CustomNavBar(
-      text: "Câmera",
+      title: Text("Preview"),
       uniqueHeroTag: "previewNavBar",
       body: Container(
         child: Column(

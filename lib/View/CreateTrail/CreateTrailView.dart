@@ -24,14 +24,14 @@ class _CreateTrailsState extends State<CreateTrails> {
       var trail = Trail(
           title: controller.titleController.text,
           date: controller.selectedDate);
-      mockTrails.add(trail);
+      TrailRepository.mockTrails.add(trail);
       Navigator.pop(context);
     }
   }
 
   Widget build(BuildContext context) {
     return CustomNavBar(
-      text: "Criar Trilha",
+      title: Text("Criar Trilha"),
       uniqueHeroTag: "createTrailsNavBar",
       body: FormView(
         controller: controller,
