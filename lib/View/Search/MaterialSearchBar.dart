@@ -24,6 +24,11 @@ class _MaterialSearchBarState extends State<MaterialSearchBar> {
           callBack: () {
             showSearch(context: context, delegate: Search(searchContext: context));
           },
+        ),
+        BarButtonItem(
+          child: Icon(Icons.filter_list),
+          callBack: () {
+          },
         )
       ],
       body: ListView.builder(
@@ -76,7 +81,6 @@ class Search extends SearchDelegate {
           title: Text(
             results[index].trail.title,
           ),
-          leading: query.isEmpty ? Icon(Icons.access_time) : SizedBox(),
           onTap: (){
             selectedResult = results[index];
             showResults(context);
