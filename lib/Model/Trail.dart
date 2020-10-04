@@ -20,7 +20,9 @@ class TrailsViewModel extends foundation.ChangeNotifier {
   List<TrailCellViewModel> _trailCellsViewModel;
 
   void loadTrails() {
-    _trailCellsViewModel = TrailRepository.mockTrails.map((e) => TrailCellViewModel(trail: e)).toList();
+    _trailCellsViewModel = TrailRepository.mockTrails
+        .map((e) => TrailCellViewModel(trail: e))
+        .toList();
     notifyListeners();
   }
 
@@ -33,19 +35,15 @@ class TrailsViewModel extends foundation.ChangeNotifier {
   }
 
   List<TrailCellViewModel> search(String searchTerms) {
-    if (searchTerms == "") {
-      return [];
-    } else {
-      return getTrailCellsViewModel().where((product) {
-        return product.trail.title.toLowerCase().contains(searchTerms.toLowerCase());
-      }).toList();
-    }
+    return getTrailCellsViewModel().where((product) {
+      return product.trail.title
+          .toLowerCase()
+          .contains(searchTerms.toLowerCase());
+    }).toList();
   }
 }
 
 class TrailCellViewModel extends foundation.ChangeNotifier {
-
   final Trail trail;
   TrailCellViewModel({this.trail}) : assert(trail != null);
-
 }
