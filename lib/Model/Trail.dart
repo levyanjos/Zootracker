@@ -33,9 +33,13 @@ class TrailsViewModel extends foundation.ChangeNotifier {
   }
 
   List<TrailCellViewModel> search(String searchTerms) {
-    return getTrailCellsViewModel().where((product) {
-      return product.trail.title.toLowerCase().contains(searchTerms.toLowerCase());
-    }).toList();
+    if (searchTerms == "") {
+      return [];
+    } else {
+      return getTrailCellsViewModel().where((product) {
+        return product.trail.title.toLowerCase().contains(searchTerms.toLowerCase());
+      }).toList();
+    }
   }
 }
 

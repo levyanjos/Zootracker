@@ -1,7 +1,7 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:zootracker/View/Search/CupertinoSearchView.dart';
+import 'package:zootracker/View/Search/MaterialSearchBar.dart';
 
 class SearchView extends StatefulWidget {
   @override
@@ -15,8 +15,6 @@ class _SearchViewState extends State<SearchView> {
         ? CupertinoPageScaffold(
             child: CupertinoSearchView(),
           )
-        : Scaffold(
-            body: CupertinoSearchView(),
-          );
+        : MaterialSearchBar();
   }
 }
