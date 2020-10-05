@@ -24,7 +24,7 @@ class _CameraViewState extends State<CameraView> {
   @override
   Widget build(BuildContext context) {
     return CustomNavBar(
-        text: "Câmera",
+        title: Text("Câmera"),
         uniqueHeroTag: "cameraNavBar",
         body: SafeArea(
           child: Column(

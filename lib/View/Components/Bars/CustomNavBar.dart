@@ -4,16 +4,13 @@ import 'dart:io';
 
 
 class CustomNavBar extends StatelessWidget {
-  final String text;
-
-  final TextStyle style;
+  final Widget title;
   final String uniqueHeroTag;
   final Widget body;
   final List<Widget> actions;
 
   CustomNavBar({
-    this.text,
-    this.style,
+    this.title,
     this.uniqueHeroTag,
     this.body,
     this.actions
@@ -25,10 +22,7 @@ class CustomNavBar extends StatelessWidget {
       return Scaffold(
         appBar: AppBar(
           centerTitle: false,
-          title: Text(
-            text,
-            style: style,
-          ),
+          title: title,
           actions: actions ?? [],
         ),
         body: body,
@@ -38,10 +32,7 @@ class CustomNavBar extends StatelessWidget {
         navigationBar: CupertinoNavigationBar(
           heroTag: uniqueHeroTag,
           transitionBetweenRoutes: false,
-          middle: Text(
-            text,
-            style: style,
-          ),
+          middle: title,
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
             children: actions ?? [],

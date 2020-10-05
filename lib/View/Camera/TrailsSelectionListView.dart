@@ -16,18 +16,18 @@ class _TrailsSelectionListViewState extends State<TrailsSelectionListView> {
   @override
   Widget build(BuildContext context) {
     return CustomNavBar(
-      text: "Salvar",
+      title: Text("Salvar"),
       uniqueHeroTag: "TrailsSelectionListViewNavBar",
       body: ListView.separated(
           separatorBuilder: (context, index) => Divider(color: Colors.grey),
-          itemCount: mockTrails.length,
+          itemCount: TrailRepository.mockTrails.length,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
               padding: const EdgeInsets.all(8.0),
               child: TrailSelectionCell(
-                title: mockTrails[index].title,
-                location: mockTrails[index].title,
-                date: mockTrails[index].date.toIso8601String(),
+                title: TrailRepository.mockTrails[index].title,
+                location: TrailRepository.mockTrails[index].title,
+                date: TrailRepository.mockTrails[index].date.toIso8601String(),
                 selected: widget.selectedIndexs.contains(index),
                 callBack: () {
                   if (widget.selectedIndexs.contains(index)) {

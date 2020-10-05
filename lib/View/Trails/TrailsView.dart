@@ -11,7 +11,7 @@ class TrailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomNavBar(
-        text: "Trilhas", uniqueHeroTag: 'tab1', body: TrailsContainerView());
+        title: Text("Trilhas"), uniqueHeroTag: 'tab1', body: TrailsContainerView());
   }
 }
 
@@ -46,15 +46,15 @@ class TrailsContainerView extends StatelessWidget {
       body: Container(
         child: ListView.separated(
           separatorBuilder: (context, index) => Divider(color: Colors.grey),
-          itemCount: mockTrails.length,
+          itemCount: TrailRepository.mockTrails.length,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
               padding: const EdgeInsets.only(
                   top: 16, left: 16, right: 16, bottom: 0),
               child: GestureDetector(
-                onTap: () => didSelectTrailInList(context, mockTrails[index]),
+                onTap: () => didSelectTrailInList(context, TrailRepository.mockTrails[index]),
                 child: TrailCell(
-                  trail: mockTrails[index],
+                  trail: TrailRepository.mockTrails[index],
                 ),
               ),
             );
@@ -73,3 +73,39 @@ class TrailsContainerView extends StatelessWidget {
     );
   }
 }
+
+
+
+// class _CupertinoSearchViewState extends State<CupertinoSearchView> {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Consumer<TrailsViewModel>(
+//       builder: (context, model, child) {
+//         final trailCellsViewModel = model.getTrailCellsViewModel();
+//         return CustomScrollView(
+//           semanticChildCount: trailCellsViewModel.length,
+//           slivers: <Widget>[
+//             CupertinoSliverNavigationBar(
+//               largeTitle: Text('Shopping Cart'),
+//             ),
+//             SliverSafeArea(
+//               // BEGINNING OF NEW CONTENT
+//               top: false,
+//               minimum: const EdgeInsets.only(top: 8),
+//               sliver: SliverList(
+//                 delegate: SliverChildBuilderDelegate(
+//                       (context, index) {
+//                     if (index < trailCellsViewModel.length) {
+//                       return Text(trailCellsViewModel[index].trail.title);
+//                     }
+//                     return null;
+//                   },
+//                 ),
+//               ),
+//             )
+//           ],
+//         );
+//       },
+//     );
+//   }
+// }
