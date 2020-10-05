@@ -1,6 +1,6 @@
 # zootracker
 
-A new Flutter application.
+Aplicação em Flutter desenvolvida para auxiliar na indentificação de rastro de mamíferos em trilhas
 
 ## Getting Started
 
