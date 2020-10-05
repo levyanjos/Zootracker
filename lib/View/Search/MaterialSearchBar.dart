@@ -1,8 +1,11 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zootracker/Model/Trail.dart';
 import 'package:zootracker/View/Components/BarButtonItem.dart';
 import 'package:zootracker/View/Components/Bars/CustomNavBar.dart';
+import 'package:zootracker/View/Filter/FilterView.dart';
 
 class MaterialSearchBar extends StatefulWidget {
   @override
@@ -22,12 +25,20 @@ class _MaterialSearchBarState extends State<MaterialSearchBar> {
         BarButtonItem(
           child: Icon(Icons.search),
           callBack: () {
-            showSearch(context: context, delegate: Search(searchContext: context));
+            showSearch(
+                context: context, delegate: Search(searchContext: context));
           },
         ),
         BarButtonItem(
           child: Icon(Icons.filter_list),
           callBack: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                fullscreenDialog: false,
+                builder: (context) => FilterView(),
+              ),
+            );
           },
         )
       ],
@@ -35,7 +46,7 @@ class _MaterialSearchBarState extends State<MaterialSearchBar> {
           itemCount: results.length,
           itemBuilder: (context, index) {
             return Text(results[index].trail.title);
-      }),
+          }),
     );
   }
 }
@@ -45,7 +56,6 @@ class Search extends SearchDelegate {
   TrailCellViewModel selectedResult;
 
   Search({this.searchContext});
-
 
   @override
   List<Widget> buildActions(BuildContext context) {
@@ -81,7 +91,7 @@ class Search extends SearchDelegate {
           title: Text(
             results[index].trail.title,
           ),
-          onTap: (){
+          onTap: () {
             selectedResult = results[index];
             showResults(context);
           },
