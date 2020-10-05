@@ -25,7 +25,7 @@ class _AnimalCellState extends State<AnimalCell> {
                   padding: const EdgeInsets.all(8.0),
                   child: Text(widget.trilha.title,
                       style:
-                      TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
+                          TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
                 ),
               ],
             ),
@@ -41,20 +41,16 @@ class _AnimalCellState extends State<AnimalCell> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                "Loremipsum...hsu ahsua suhau sauh suah usha uhhsauhs shuahsuhaus hauhsua suaushauh suahsuahs uhausuah suhauhsuah suhaushu ahsuhauhsuahushaushuahsuahsuahsuahushau.",
-                maxLines: 3,
+                  "Loremipsum...hsu ahsua suhau sauh suah usha uhhsauhs shuahsuhaus hauhsua suaushauh suahsuahs uhausuah suhauhsuah suhaushu ahsuhauhsuahushaushuahsuahsuahsuahushau.",
+                  maxLines: 3,
                   style:
-    TextStyle(fontSize: 14, fontWeight: FontWeight.normal)
-
-              ),
+                      TextStyle(fontSize: 14, fontWeight: FontWeight.normal)),
             ),
             Divider()
           ],
         ),
       ),
-      onTap: () {
-
-      },
+      onTap: () {},
     );
   }
 }
