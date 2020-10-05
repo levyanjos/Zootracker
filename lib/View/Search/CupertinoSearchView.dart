@@ -19,7 +19,7 @@ class _CupertinoSearchViewState extends State<CupertinoSearchView> {
   Widget build(BuildContext context) {
     final model = Provider.of<TrailsViewModel>(context);
     final results = model.search(_terms);
-    var _statusBarHeigh = MediaQuery.of(context).padding.top;
+    var _statusBarHeight = MediaQuery.of(context).padding.top;
 
     return DecoratedBox(
       decoration: const BoxDecoration(
@@ -27,7 +27,7 @@ class _CupertinoSearchViewState extends State<CupertinoSearchView> {
       ),
       child: Column(
         children: [
-          _buildSearchBox(_statusBarHeigh),
+          _buildSearchBox(_statusBarHeight),
           Expanded(
             child: ListView.builder(
               itemBuilder: (context, index) =>
