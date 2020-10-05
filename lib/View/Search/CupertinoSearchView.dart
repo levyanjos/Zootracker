@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zootracker/Model/Trail.dart';
+import 'package:zootracker/View/Components/AnimalCell.dart';
 import 'package:zootracker/View/Components/BarButtonItem.dart';
 import 'package:zootracker/View/Components/Bars/SearchBar.dart';
 import 'package:zootracker/View/Filter/FilterView.dart';
@@ -31,7 +32,7 @@ class _CupertinoSearchViewState extends State<CupertinoSearchView> {
           _buildSearchBox(_statusBarHeight),
           Expanded(
             child: ListView.builder(
-              itemBuilder: (context, index) => Text(results[index].trail.title),
+              itemBuilder: (context, index) => AnimalCell(trilha: results[index].trail),
               itemCount: results.length,
             ),
           ),
