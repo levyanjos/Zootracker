@@ -28,7 +28,7 @@ class _DetailsTrailViewState extends State<DetailsTrailView> {
 
   Widget build(BuildContext context) {
     return CustomNavBar(
-      text: "Trilha",
+      title: Text("Trilha"),
       uniqueHeroTag: "detailsTrailsNavBar",
       body: FormView(
         controller: controller,
