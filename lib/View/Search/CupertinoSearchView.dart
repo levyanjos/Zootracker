@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:zootracker/Model/Trail.dart';
 import 'package:zootracker/View/Components/BarButtonItem.dart';
 import 'package:zootracker/View/Components/Bars/SearchBar.dart';
+import 'package:zootracker/View/Filter/FilterView.dart';
 
 class CupertinoSearchView extends StatefulWidget {
   @override
@@ -30,8 +31,7 @@ class _CupertinoSearchViewState extends State<CupertinoSearchView> {
           _buildSearchBox(_statusBarHeight),
           Expanded(
             child: ListView.builder(
-              itemBuilder: (context, index) =>
-                  Text(results[index].trail.title),
+              itemBuilder: (context, index) => Text(results[index].trail.title),
               itemCount: results.length,
             ),
           ),
@@ -62,50 +62,59 @@ class _CupertinoSearchViewState extends State<CupertinoSearchView> {
 
   Widget _buildSearchBox(double statusHeight) {
     return Padding(
-      padding: const EdgeInsets.all(0),
-      child: DecoratedBox(
-        decoration: const BoxDecoration(
-          color: CupertinoColors.white,
-        ),
-        child: Column(
-          children: [
-            Padding(
-                padding: EdgeInsets.only(top: 12 + statusHeight, bottom: 8, left: 12, right: 12),
-                child: Stack(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text("Pesquisa",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        BarButtonItem(
-                          child: Icon(Icons.filter_list),
-                        ),
-                      ],
-                    )
-                  ],
-                )),
-            Padding(
-              padding: const EdgeInsets.only(top: 4, left: 12, right: 12, bottom: 12),
-              child: SearchBar(
-                controller: _controller,
-                focusNode: _focusNode,
+        padding: const EdgeInsets.all(0),
+        child: DecoratedBox(
+          decoration: const BoxDecoration(
+            color: CupertinoColors.white,
+          ),
+          child: Column(
+            children: [
+              Padding(
+                  padding: EdgeInsets.only(
+                      top: 12 + statusHeight, bottom: 8, left: 12, right: 12),
+                  child: Stack(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Pesquisa",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          BarButtonItem(
+                              child: Icon(Icons.filter_list),
+                              callBack: () {
+                                Navigator.push(
+                                  context,
+                                  CupertinoPageRoute(
+                                    fullscreenDialog: false,
+                                    builder: (context) => FilterView(),
+                                  ),
+                                );
+                              }),
+                        ],
+                      )
+                    ],
+                  )),
+              Padding(
+                padding: const EdgeInsets.only(
+                    top: 4, left: 12, right: 12, bottom: 12),
+                child: SearchBar(
+                  controller: _controller,
+                  focusNode: _focusNode,
+                ),
               ),
-            ),
-            Divider(
+              Divider(
                 color: CupertinoColors.opaqueSeparator,
-              height: 0,
-            )
-          ],
-        ),
-      )
-    );
+                height: 0,
+              )
+            ],
+          ),
+        ));
   }
 }
-

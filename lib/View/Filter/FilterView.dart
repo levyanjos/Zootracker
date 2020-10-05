@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:zootracker/View/Components/BarButtonItem.dart';
 import 'package:zootracker/View/Components/Bars/CustomNavBar.dart';
 
 class FilterView extends StatefulWidget {
@@ -91,6 +92,14 @@ class _FilterViewState extends State<FilterView> {
           )
         ],
       ),
+      actions: <Widget>[
+        BarButtonItem(child:
+          Icon(Icons.check),
+          callBack: () {
+            Navigator.of(context).pop();
+          },
+        )
+      ],
     );
   }
 
