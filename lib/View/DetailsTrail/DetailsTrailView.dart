@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zootracker/Model/Trail.dart';
+import 'package:zootracker/View/AnimalRegistration/AnimalRegistrationView.dart';
 import 'package:zootracker/View/Components/BarButtonItem.dart';
 import 'package:zootracker/View/Components/Bars/CustomNavBar.dart';
 import 'package:zootracker/View/Components/CircleImageViewCell.dart';
@@ -36,7 +39,17 @@ class _DetailsTrailViewState extends State<DetailsTrailView> {
           height: 230,
           child: Column(
             children: <Widget>[
-              SectionHeaderView(),
+              SectionHeaderView(
+                leading: BarButtonItem(
+                  child: Icon(
+                    Icons.add,
+                    color: CupertinoColors.label,
+                  ),
+                  callBack: () {
+                    _pushToCorrectPresentation(context, false, AnimalRegistration());
+                  },
+                ),
+              ),
               Expanded(
                 child: ListView.builder(
                   shrinkWrap: true,
@@ -54,17 +67,32 @@ class _DetailsTrailViewState extends State<DetailsTrailView> {
       actions: <Widget>[
         BarButtonItem(
           child: Icon(
-            Icons.delete,
+            Icons.edit,
             color: CupertinoColors.label,
           ),
         ),
         BarButtonItem(
           child: Icon(
-            Icons.edit,
+            Icons.delete,
             color: CupertinoColors.label,
           ),
         ),
       ],
     );
+  }
+
+  void _pushToCorrectPresentation(
+      BuildContext context, bool isFullScreen, Widget screem) {
+    Navigator.push(
+        context,
+        Platform.isIOS
+            ? CupertinoPageRoute(
+          fullscreenDialog: isFullScreen,
+          builder: (context) => screem,
+        )
+            : MaterialPageRoute(
+          fullscreenDialog: isFullScreen,
+          builder: (context) => screem,
+        ));
   }
 }
