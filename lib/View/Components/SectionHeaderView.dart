@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:zootracker/View/Components/BarButtonItem.dart';
 
 class SectionHeaderView extends StatefulWidget {
+  final Widget leading;
+
+  const SectionHeaderView({Key key, this.leading}) : super(key: key);
+
   @override
   _SectionHeaderViewState createState() => _SectionHeaderViewState();
 }
@@ -19,12 +23,7 @@ class _SectionHeaderViewState extends State<SectionHeaderView> {
             style:
             TextStyle(fontSize: 17, fontWeight: FontWeight.normal),
           ),
-          BarButtonItem(
-            child: Icon(
-              Icons.add,
-              color: CupertinoColors.label,
-            ),
-          ),
+          widget.leading ?? Spacer()
         ],
       ),
     );

@@ -26,7 +26,7 @@ class _FormViewState extends State<FormView> {
     return Scaffold(
       body: Container(
         child: Padding(
-          padding: const EdgeInsets.only(top: 16),
+          padding: const EdgeInsets.only(top: 0),
           child: ListView(
             children: <Widget>[
               CustomImagePicker(
