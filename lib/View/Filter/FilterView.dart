@@ -294,3 +294,4 @@ class _FilterViewState extends State<FilterView> {
         : _buildCupertinioPicker(title, options, stringState, isFirst);
   }
 }
+

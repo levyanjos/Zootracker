@@ -8,6 +8,7 @@ import 'package:zootracker/View/Components/BarButtonItem.dart';
 import 'package:zootracker/View/Components/Bars/SearchBar.dart';
 import 'package:zootracker/View/Filter/ApplyFilterView.dart';
 
+
 class CupertinoSearchView extends StatefulWidget {
   @override
   _CupertinoSearchViewState createState() => _CupertinoSearchViewState();
