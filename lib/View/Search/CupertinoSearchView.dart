@@ -6,7 +6,8 @@ import 'package:zootracker/View/AnimalDetails/AnimalCell.dart';
 import 'package:zootracker/View/AnimalDetails/AnimalDetailsView.dart';
 import 'package:zootracker/View/Components/BarButtonItem.dart';
 import 'package:zootracker/View/Components/Bars/SearchBar.dart';
-import 'package:zootracker/View/Filter/FilterView.dart';
+import 'package:zootracker/View/Filter/ApplyFilterView.dart';
+
 
 class CupertinoSearchView extends StatefulWidget {
   @override
@@ -106,7 +107,7 @@ class _CupertinoSearchViewState extends State<CupertinoSearchView> {
                                   context,
                                   CupertinoPageRoute(
                                     fullscreenDialog: false,
-                                    builder: (context) => FilterView(),
+                                    builder: (context) => ApplyFilterView(),
                                   ),
                                 );
                               }),

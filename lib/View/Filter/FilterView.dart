@@ -1,9 +1,6 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:zootracker/View/Components/BarButtonItem.dart';
-import 'package:zootracker/View/Components/Bars/CustomNavBar.dart';
 
 class FilterView extends StatefulWidget {
   @override
@@ -21,78 +18,66 @@ class _FilterViewState extends State<FilterView> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomNavBar(
-      title: Text("Filters"),
-      uniqueHeroTag: "FilterViewNavBar",
-      body: ListView(
-        children: <Widget>[
-          _buildSizeSection(
-            "Tamanho das pegadas anteriores",
-            <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child:
-                    _buildNumberPadField("Comprimento:", " 0 cms", name, false),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child:
-                    _buildNumberPadField("Largura:", " 0 cms", location, true),
-              ),
-            ],
-          ),
-          _buildSizeSection(
-            "Tamanho das pegadas posteriores",
-            <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child:
-                    _buildNumberPadField("Comprimento:", " 0 cms", name, false),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child:
-                    _buildNumberPadField("Largura:", " 0 cms", location, true),
-              ),
-            ],
-          ),
-          _buildSizeSection(
-            "Demais Dados",
-            <Widget>[
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: _buildPicker(
-                    "Número de dígitos:", options, dropdownValue, true),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: _buildPicker(
-                    "Formato de dígitos:", options, dropdownValue, false),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: _buildPicker(
-                    "Presença de garras:", options, dropdownValue, false),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: _buildPicker(
-                    "Ordem taxonômica:", options, dropdownValue, false),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                child: _buildPicker("Estado:", options, dropdownValue, false),
-              ),
-            ],
-          )
-        ],
-      ),
-      actions: <Widget>[
-        BarButtonItem(
-          child: Icon(Icons.check),
-          callBack: () {
-            Navigator.of(context).pop();
-          },
+    return ListView(
+      children: <Widget>[
+        _buildSizeSection(
+          "Tamanho das pegadas anteriores",
+          <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child:
+              _buildNumberPadField("Comprimento:", " 0 cms", name, false),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child:
+              _buildNumberPadField("Largura:", " 0 cms", location, true),
+            ),
+          ],
+        ),
+        _buildSizeSection(
+          "Tamanho das pegadas posteriores",
+          <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child:
+              _buildNumberPadField("Comprimento:", " 0 cms", name, false),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child:
+              _buildNumberPadField("Largura:", " 0 cms", location, true),
+            ),
+          ],
+        ),
+        _buildSizeSection(
+          "Demais Dados",
+          <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: _buildPicker(
+                  "Número de dígitos:", options, dropdownValue, true),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: _buildPicker(
+                  "Formato de dígitos:", options, dropdownValue, false),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: _buildPicker(
+                  "Presença de garras:", options, dropdownValue, false),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: _buildPicker(
+                  "Ordem taxonômica:", options, dropdownValue, false),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: _buildPicker("Estado:", options, dropdownValue, false),
+            ),
+          ],
         )
       ],
     );
@@ -309,3 +294,4 @@ class _FilterViewState extends State<FilterView> {
         : _buildCupertinioPicker(title, options, stringState, isFirst);
   }
 }
+
