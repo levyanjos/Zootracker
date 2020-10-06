@@ -26,7 +26,7 @@ class _SimilarPawsViewState extends State<SimilarPawsView> {
           itemCount: widget.animals.length,
           itemBuilder: (context, index) {
             return GestureDetector(
-              child: AnimalCell(trilha: widget.animals[index]),
+              child: Container(),
               onTap: () {
                 _pushToCorrectPresentation(context, false, AnimalDetailsView(trilha: widget.animals[index]));
               },

@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:zootracker/Model/Trail.dart';
 import 'package:zootracker/View/AnimalDetails/AnimalCell.dart';
 import 'package:zootracker/View/AnimalDetails/AnimalDetailsView.dart';
 import 'package:zootracker/View/Components/BarButtonItem.dart';
 import 'package:zootracker/View/Components/Bars/SearchBar.dart';
 import 'package:zootracker/View/Filter/ApplyFilterView.dart';
+import 'package:zootracker/ViewModel/SearchViewModel.dart';
 
 
 class CupertinoSearchView extends StatefulWidget {
@@ -21,7 +21,7 @@ class _CupertinoSearchViewState extends State<CupertinoSearchView> {
 
   @override
   Widget build(BuildContext context) {
-    final model = Provider.of<TrailsViewModel>(context);
+    final model = Provider.of<SearchViewModel>(context);
     final results = model.search(_terms);
     var _statusBarHeight = MediaQuery.of(context).padding.top;
 
@@ -35,13 +35,13 @@ class _CupertinoSearchViewState extends State<CupertinoSearchView> {
           Expanded(
             child: ListView.builder(
               itemBuilder: (context, index) => GestureDetector(
-                child: AnimalCell(trilha: results[index].trail),
+                child: AnimalCell(animal: results[index].animal),
                 onTap: () {
                   Navigator.push(
                     context,
                     CupertinoPageRoute(
                       fullscreenDialog: false,
-                      builder: (context) => AnimalDetailsView(trilha: results[index].trail),
+                      builder: (context) => Container(),
                     ),
                   );
                 },

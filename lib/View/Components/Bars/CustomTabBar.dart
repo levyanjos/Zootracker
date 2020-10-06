@@ -5,6 +5,7 @@ import 'package:zootracker/Model/Trail.dart';
 import 'package:zootracker/View/Camera/CameraView.dart';
 import 'package:zootracker/View/Search/SearchView.dart';
 import 'package:zootracker/View/Trails/TrailsView.dart';
+import 'package:zootracker/ViewModel/SearchViewModel.dart';
 import 'package:zootracker/main.dart';
 
 class CustomTabBar extends StatefulWidget {
@@ -44,8 +45,8 @@ class _CustomTabBarState extends State<CustomTabBar> {
           } else if (index == 2) {
             return CupertinoTabView(
               navigatorKey: thirdTabNavKey,
-              builder: (BuildContext context) => ChangeNotifierProvider<TrailsViewModel>(
-                create: (_) => TrailsViewModel()..loadTrails(),
+              builder: (BuildContext context) => ChangeNotifierProvider<SearchViewModel>(
+                create: (_) => SearchViewModel()..loadAnimals(),
                 child: SearchView(),
               ),
             );
