@@ -1,16 +1,16 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:zootracker/Model/Trail.dart';
+import 'package:provider/provider.dart';
+import 'package:zootracker/Model/Animal.dart';
 import 'package:zootracker/View/AnimalDetails/SimilarPawsView.dart';
 import 'package:zootracker/View/Components/Bars/CustomNavBar.dart';
+import 'package:zootracker/ViewModel/SearchViewModel.dart';
 
 class AnimalDetailsView extends StatefulWidget {
-  final Trail trilha;
-  var patasParecidas = [];
+  final Animal animal;
 
-  AnimalDetailsView({@required this.trilha}) : assert(trilha != null);
+  AnimalDetailsView({@required this.animal}) : assert(animal != null);
 
   @override
   _AnimalDetailsViewState createState() => _AnimalDetailsViewState();
@@ -19,8 +19,9 @@ class AnimalDetailsView extends StatefulWidget {
 class _AnimalDetailsViewState extends State<AnimalDetailsView> {
   @override
   Widget build(BuildContext context) {
+
     return CustomNavBar(
-      title: Text(widget.trilha.title),
+      title: Text(widget.animal.nome),
       uniqueHeroTag: "AnimalDetailsViewNavBar",
       body: MaterialApp(
         home: DefaultTabController(
@@ -40,16 +41,14 @@ class _AnimalDetailsViewState extends State<AnimalDetailsView> {
                 Container(
                   child: ListView(
                     children: <Widget>[
-                      _buildSectionWithImage("",
-                          "Loremipsum...hsu ahsua suhau sauh suah usha uhhsauhs shuahsuhaus hauhsua suaushauh suahsuahs uhausuah suhauhsuah suhaushu ahsuhauhsuahushaushuahsuahsuahsuahushau.\n Loremipsum...hsu ahsua suhau sauh suah usha uhhsauhs shuahsuhaus hauhsua suaushauh suahsuahs uhausuah suhauhsuah suhaushu ahsuhauhsuahushaushuahsuahsuahsuahushau")
-                    ],
+                      _buildSectionWithImage(widget.animal.imagem, widget.animal.descricao),
+                    ]
                   ),
                 ),
                 Container(
                   child: ListView(
                     children: <Widget>[
-                      _buildSectionWithImage("",
-                          "Loremipsum...hsu ahsua suhau sauh suah usha uhhsauhs shuahsuhaus hauhsua suaushauh suahsuahs uhausuah suhauhsuah suhaushu ahsuhauhsuahushaushuahsuahsuahsuahushau.\n Loremipsum...hsu ahsua suhau sauh suah usha uhhsauhs shuahsuhaus hauhsua suaushauh suahsuahs uhausuah suhauhsuah suhaushu ahsuhauhsuahushaushuahsuahsuahsuahushau")
+                      _buildSectionWithImage(widget.animal.localizacao.imagemLocal, widget.animal.localizacao.nomeLocal),
                     ],
                   ),
                 ),
@@ -58,12 +57,10 @@ class _AnimalDetailsViewState extends State<AnimalDetailsView> {
                     children: <Widget>[
                       Column(
                         children: [
-                          widget.patasParecidas.length == 0
+                          widget.animal.pegada.pegadasSimi.length > 0
                               ? _buildAlertToClousesApparence()
                               : Container(),
-                          _buildSectionWithImage("",
-                              "Loremipsum...hsu ahsua suhau sauh suah usha uhhsauhs shuahsuhaus hauhsua suaushauh suahsuahs uhausuah suhauhsuah suhaushu ahsuhauhsuahushaushuahsuahsuahsuahushau."),
-                        ],
+                          _buildSectionWithImage("","")],
                       )
                     ],
                   ),
@@ -90,7 +87,11 @@ class _AnimalDetailsViewState extends State<AnimalDetailsView> {
                   shape: BoxShape.rectangle,
                   image: DecorationImage(
                       fit: BoxFit.fitWidth,
-                      image: NetworkImage("https://i.imgur.com/BoN9kdC.png"))),
+                      image: imagePath != ""
+                          ? AssetImage('assets/images/${imagePath}')
+                          : AssetImage('assets/images/notFound.jpg')
+                  ),
+              ),
             ),
           ),
           Padding(
@@ -122,7 +123,11 @@ class _AnimalDetailsViewState extends State<AnimalDetailsView> {
         ),
       ),
       onTap: () {
-        _pushToCorrectPresentation(context, false, SimilarPawsView(animals: TrailRepository.mockTrails,));
+        _pushToCorrectPresentation(context, false,
+          ChangeNotifierProvider<SearchViewModel>(
+            create: (_) => SearchViewModel()..loadAnimals(),
+            child: SimilarPawsView(animalsIds: widget.animal.pegada.pegadasSimi,),
+          ));
       },
     );
   }

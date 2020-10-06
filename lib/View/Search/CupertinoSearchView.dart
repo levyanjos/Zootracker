@@ -41,7 +41,7 @@ class _CupertinoSearchViewState extends State<CupertinoSearchView> {
                     context,
                     CupertinoPageRoute(
                       fullscreenDialog: false,
-                      builder: (context) => Container(),
+                      builder: (context) => AnimalDetailsView(animal: results[index].animal),
                     ),
                   );
                 },

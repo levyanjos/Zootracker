@@ -27,6 +27,18 @@ class SearchViewModel extends foundation.ChangeNotifier {
           .contains(searchTerms.toLowerCase());
     }).toList();
   }
+
+  AnimalCellViewModel getProductById(String id) {
+    return getAnimalCellViewModels().firstWhere((element) => element.animal.id == id);
+  }
+
+  List<AnimalCellViewModel> getAnimalsByIds(List<String> ids) {
+    var result = ids.map((e) => getProductById(e)).toList();
+    notifyListeners();
+
+    return result;
+  }
+
 }
 
 class AnimalCellViewModel extends foundation.ChangeNotifier {
