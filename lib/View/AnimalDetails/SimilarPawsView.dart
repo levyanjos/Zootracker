@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:zootracker/View/AnimalDetails/AnimalCell.dart';
 import 'package:zootracker/View/AnimalDetails/AnimalDetailsView.dart';
 import 'package:zootracker/View/Components/Bars/CustomNavBar.dart';
+import 'package:zootracker/View/Components/Bars/SearchBar.dart';
 import 'package:zootracker/ViewModel/SearchViewModel.dart';
 
 class SimilarPawsView extends StatefulWidget {
@@ -25,17 +26,20 @@ class _SimilarPawsViewState extends State<SimilarPawsView> {
     return CustomNavBar(
       title: Text("Importante"),
       uniqueHeroTag: "SimilarPawsViewNavBar",
-      body: ListView.builder(
-          itemCount: result.length,
-          itemBuilder: (context, index) {
-            return GestureDetector(
-              child: AnimalCell(animal: result[index].animal),
-              onTap: () {
-                _pushToCorrectPresentation(context, false,
-                    AnimalDetailsView(animal: result[index].animal));
-              },
-            );
-          }),
+      body: Container(
+        color: Styles.backgroundColor,
+        child: ListView.builder(
+            itemCount: result.length,
+            itemBuilder: (context, index) {
+              return GestureDetector(
+                child: AnimalCell(animal: result[index].animal),
+                onTap: () {
+                  _pushToCorrectPresentation(context, false,
+                      AnimalDetailsView(animal: result[index].animal));
+                },
+              );
+            }),
+      ),
     );
   }
 

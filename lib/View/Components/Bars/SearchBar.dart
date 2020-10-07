@@ -113,5 +113,7 @@ abstract class Styles {
 
   static const Color selectedbackgroundColor = Color.fromRGBO(206, 234, 214, 1);
 
+  static const Color warningColor = Color.fromRGBO(143, 52, 40, 1);
+
 
 }

@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:zootracker/Model/Animal.dart';
 import 'package:zootracker/View/AnimalDetails/SimilarPawsView.dart';
 import 'package:zootracker/View/Components/Bars/CustomNavBar.dart';
+import 'package:zootracker/View/Components/Bars/SearchBar.dart';
 import 'package:zootracker/ViewModel/SearchViewModel.dart';
 
 class AnimalDetailsView extends StatefulWidget {
@@ -24,21 +25,31 @@ class _AnimalDetailsViewState extends State<AnimalDetailsView> {
       title: Text(widget.animal.nome),
       uniqueHeroTag: "AnimalDetailsViewNavBar",
       body: MaterialApp(
+      theme: ThemeData(
+          appBarTheme: AppBarTheme(
+            color: Colors.white,
+          )),
         home: DefaultTabController(
           length: 3,
           child: Scaffold(
             appBar: AppBar(
               bottom: TabBar(
+                indicatorColor: Styles.actionColor,
                 tabs: [
-                  Tab(icon: Icon(Icons.directions_car)),
-                  Tab(icon: Icon(Icons.location_on)),
-                  Tab(icon: Icon(Icons.directions_bike)),
+                  Tab(icon: Image.asset(
+                    "assets/images/capivara.png",
+                    width: 25,
+                    height: 25,
+                  ),),
+                  Tab(icon: Icon(Icons.location_on, color: Styles.actionColor,)),
+                  Tab(icon: Icon(CupertinoIcons.paw_solid, color: Styles.actionColor,)),
                 ],
               ),
             ),
             body: TabBarView(
               children: [
                 Container(
+                  color: Styles.backgroundColor,
                   child: ListView(
                     children: <Widget>[
                       _buildSectionWithImage(widget.animal.imagem, widget.animal.descricao),
@@ -46,6 +57,7 @@ class _AnimalDetailsViewState extends State<AnimalDetailsView> {
                   ),
                 ),
                 Container(
+                  color: Styles.backgroundColor,
                   child: ListView(
                     children: <Widget>[
                       _buildSectionWithImage(widget.animal.localizacao.imagemLocal, widget.animal.localizacao.nomeLocal),
@@ -53,6 +65,7 @@ class _AnimalDetailsViewState extends State<AnimalDetailsView> {
                   ),
                 ),
                 Container(
+                  color: Styles.backgroundColor,
                   child: ListView(
                     children: <Widget>[
                       Column(
@@ -109,15 +122,15 @@ class _AnimalDetailsViewState extends State<AnimalDetailsView> {
   Widget _buildAlertToClousesApparence() {
     return GestureDetector(
       child: Container(
-        color: Colors.red,
+        color: Styles.warningColor,
         height: 40,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Spacer(),
-            Icon(Icons.info),
+            Icon(Icons.info, color: Colors.white,),
             Spacer(),
-            Text("Clique aqui para ver pegadas parecidas!"),
+            Text("Clique aqui para ver pegadas parecidas!", style: TextStyle(color: Colors.white),),
             Spacer()
           ],
         ),

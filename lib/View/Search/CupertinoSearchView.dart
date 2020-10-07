@@ -27,7 +27,7 @@ class _CupertinoSearchViewState extends State<CupertinoSearchView> {
 
     return DecoratedBox(
       decoration: const BoxDecoration(
-        color: Styles.scaffoldBackground,
+        color: Styles.backgroundColor,
       ),
       child: Column(
         children: [
