@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zootracker/Model/Trail.dart';
 import 'package:zootracker/View/Camera/CameraView.dart';
+import 'package:zootracker/View/Feedback/FeedBackView.dart';
 import 'package:zootracker/View/Search/SearchView.dart';
 import 'package:zootracker/View/Trails/TrailsView.dart';
 import 'package:zootracker/ViewModel/SearchViewModel.dart';
@@ -75,7 +76,7 @@ class _CustomTabBarState extends State<CustomTabBar> {
           } else {
             return CupertinoTabView(
               navigatorKey: fifthTabNavKey,
-              builder: (BuildContext context) => TrailsView(),
+              builder: (BuildContext context) => FeedBackView(),
             );
           }
         });
