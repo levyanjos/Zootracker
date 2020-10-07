@@ -7,6 +7,7 @@ import 'package:path/path.dart';
 import 'package:zootracker/View/Camera/TrailsSelectionListView.dart';
 import 'package:zootracker/View/Components/BarButtonItem.dart';
 import 'package:zootracker/View/Components/Bars/CustomNavBar.dart';
+import 'package:zootracker/View/Components/Bars/SearchBar.dart';
 
 class PreviewImageScreen extends StatefulWidget {
   final String imagePath;
@@ -37,7 +38,7 @@ class _PreviewImageScreenState extends State<PreviewImageScreen> {
         BarButtonItem(
           child: Icon(
             Icons.file_download,
-            color: CupertinoColors.label,
+            color: Styles.actionColor,
           ),
           callBack: () => {
             _showAlertDialog(
@@ -65,7 +66,7 @@ class _PreviewImageScreenState extends State<PreviewImageScreen> {
         BarButtonItem(
           child: Icon(
             Icons.delete,
-            color: CupertinoColors.label,
+            color: Styles.actionColor,
           ),
           callBack: () => {
             _showAlertDialog(

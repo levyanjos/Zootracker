@@ -111,4 +111,7 @@ abstract class Styles {
 
   static const Color placehouderColor = Color.fromRGBO(243, 243, 243, 1);
 
+  static const Color selectedbackgroundColor = Color.fromRGBO(206, 234, 214, 1);
+
+
 }
