@@ -1,8 +1,13 @@
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:zootracker/Model/Animal.dart';
 
 class FilterView extends StatefulWidget {
+  final Animal animal;
+
+  const FilterView({Key key, this.animal}) : super(key: key);
+
   @override
   _FilterViewState createState() => _FilterViewState();
 }
@@ -21,61 +26,33 @@ class _FilterViewState extends State<FilterView> {
     return ListView(
       children: <Widget>[
         _buildSizeSection(
-          "Tamanho das pegadas anteriores",
-          <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child:
-              _buildNumberPadField("Comprimento:", " 0 cms", name, false),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child:
-              _buildNumberPadField("Largura:", " 0 cms", location, true),
-            ),
-          ],
-        ),
-        _buildSizeSection(
-          "Tamanho das pegadas posteriores",
-          <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child:
-              _buildNumberPadField("Comprimento:", " 0 cms", name, false),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child:
-              _buildNumberPadField("Largura:", " 0 cms", location, true),
-            ),
-          ],
-        ),
-        _buildSizeSection(
           "Demais Dados",
           <Widget>[
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: _buildPicker(
-                  "Número de dígitos:", options, dropdownValue, true),
+                  "Número de dígitos:", options, (value) {
+                    dropdownValue = value;
+                    }, true),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: _buildPicker(
-                  "Formato de dígitos:", options, dropdownValue, false),
+                  "Formato de dígitos:", options, (value) { dropdownValue = value; }, false),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: _buildPicker(
-                  "Presença de garras:", options, dropdownValue, false),
+                  "Presença de garras:", options, (value) { dropdownValue = value; }, false),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: _buildPicker(
-                  "Ordem taxonômica:", options, dropdownValue, false),
+                  "Ordem taxonômica:", options, (value) { dropdownValue = value; }, false),
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: _buildPicker("Estado:", options, dropdownValue, false),
+              child: _buildPicker("Estado:", options, (value) { dropdownValue = value; }, false),
             ),
           ],
         )
@@ -111,13 +88,13 @@ class _FilterViewState extends State<FilterView> {
       autocorrect: false,
       decoration: !isLast
           ? const BoxDecoration(
-              border: Border(
-                bottom: BorderSide(
-                  width: 0,
-                  color: CupertinoColors.inactiveGray,
-                ),
-              ),
-            )
+        border: Border(
+          bottom: BorderSide(
+            width: 0,
+            color: CupertinoColors.inactiveGray,
+          ),
+        ),
+      )
           : null,
       placeholder: placeholder,
       onChanged: (newName) {
@@ -196,7 +173,8 @@ class _FilterViewState extends State<FilterView> {
   }
 
   Widget _buildCupertinioPicker(
-      String title, List<String> options, String stringState, bool isFirst) {
+      String title, List<String> options, void setVariable(String value), bool isFirst) {
+    var selectedValue = "Selecione";
     return Column(
       children: [
         isFirst
@@ -225,7 +203,7 @@ class _FilterViewState extends State<FilterView> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("selecione"),
+                    Text(selectedValue),
                     Icon(Icons.keyboard_arrow_down)
                   ],
                 ),
@@ -250,8 +228,6 @@ class _FilterViewState extends State<FilterView> {
                                 CupertinoButton(
                                   child: Text("Ok"),
                                   onPressed: () {
-                                    setState(() {
-                                    });
                                     Navigator.pop(context);
                                   },
                                 )
@@ -261,8 +237,11 @@ class _FilterViewState extends State<FilterView> {
                               child: CupertinoPicker(
                                 itemExtent: 32.0,
                                 onSelectedItemChanged: (int index) {
+                                  print(options[index]);
+                                  selectedValue = options[index];
+                                  setState(() {});
                                   setState(() {
-                                    stringState = options[index];
+                                    setVariable(options[index]);
                                   });
                                 },
                                 children: new List<Widget>.generate(
@@ -288,10 +267,41 @@ class _FilterViewState extends State<FilterView> {
   }
 
   Widget _buildPicker(
-      String title, List<String> options, String stringState, bool isFirst) {
+      String title, List<String> options, void setVariable(String value), bool isFirst) {
     return Platform.isAndroid
-        ? _buildDropDownField(title, options, stringState, isFirst)
-        : _buildCupertinioPicker(title, options, stringState, isFirst);
+        ? Container()
+        : _buildCupertinioPicker(title, options, setVariable, isFirst);
   }
 }
 
+
+// _buildSizeSection(
+// "Tamanho das pegadas anteriores",
+// <Widget>[
+// Padding(
+// padding: const EdgeInsets.symmetric(horizontal: 16),
+// child:
+// _buildNumberPadField("Comprimento:", " 0 cms", name, false),
+// ),
+// Padding(
+// padding: const EdgeInsets.symmetric(horizontal: 16),
+// child:
+// _buildNumberPadField("Largura:", " 0 cms", location, true),
+// ),
+// ],
+// ),
+// _buildSizeSection(
+// "Tamanho das pegadas posteriores",
+// <Widget>[
+// Padding(
+// padding: const EdgeInsets.symmetric(horizontal: 16),
+// child:
+// _buildNumberPadField("Comprimento:", " 0 cms", name, false),
+// ),
+// Padding(
+// padding: const EdgeInsets.symmetric(horizontal: 16),
+// child:
+// _buildNumberPadField("Largura:", " 0 cms", location, true),
+// ),
+// ],
+// ),

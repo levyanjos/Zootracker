@@ -1,10 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:zootracker/Model/Animal.dart';
 import 'package:zootracker/View/Components/BarButtonItem.dart';
 import 'package:zootracker/View/Components/Bars/CustomNavBar.dart';
 import 'package:zootracker/View/Filter/FilterView.dart';
 
 class ApplyFilterView extends StatefulWidget {
+  Animal animalQuery = Animal(
+    localizacao: Localizacao(estado: "Ceará"),
+    pegada: Pegada(
+        formDigitos: "Arredondado",
+        ordTax: "Arctiodactyla",
+        presCascos: 0,
+        presGarras: 0,
+        numDigitos: 0),
+  );
   @override
   _ApplyFilterViewState createState() => _ApplyFilterViewState();
 }

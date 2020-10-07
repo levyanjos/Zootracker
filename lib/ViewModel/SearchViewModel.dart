@@ -4,10 +4,14 @@ import 'package:zootracker/Repository/ZootrackerRepository.dart';
 
 class SearchViewModel extends foundation.ChangeNotifier {
   List<AnimalCellViewModel> _animalCellViewModels;
+  final Animal animalQuery;
+
+  SearchViewModel({this.animalQuery});
 
   void loadAnimals() {
     ZootrackerRepository.getAllAnimals().then((value) {
-      _animalCellViewModels = value.map((e) => AnimalCellViewModel(animal: e)).toList();
+      _animalCellViewModels =
+          value.map((e) => AnimalCellViewModel(animal: e)).toList();
       notifyListeners();
     });
   }
@@ -16,7 +20,11 @@ class SearchViewModel extends foundation.ChangeNotifier {
     if (_animalCellViewModels == null) {
       return [];
     } else {
-      return _animalCellViewModels;
+      if (animalQuery != null) {
+        return _getAnimalsFiltered().toList();
+      } else {
+        return _animalCellViewModels;
+      }
     }
   }
 
@@ -28,8 +36,18 @@ class SearchViewModel extends foundation.ChangeNotifier {
     }).toList();
   }
 
+  List<AnimalCellViewModel> _getAnimalsFiltered() {
+    return _animalCellViewModels.where((model) => (
+            (animalQuery.pegada.numDigitos == null || animalQuery.pegada.numDigitos == model.animal.pegada.numDigitos) &&
+            (animalQuery.pegada.formDigitos == null) || animalQuery.pegada.formDigitos.contains(model.animal.pegada.formDigitos) &&
+            (animalQuery.pegada.presGarras == null) || animalQuery.pegada.presGarras == model.animal.pegada.presGarras) &&
+            (animalQuery.pegada.ordTax == null) || animalQuery.pegada.ordTax.contains(model.animal.pegada.ordTax) &&
+            (animalQuery.localizacao.estado == null) || animalQuery.localizacao.estado.contains(model.animal.localizacao.estado));
+  }
+
   AnimalCellViewModel getProductById(String id) {
-    return getAnimalCellViewModels().firstWhere((element) => element.animal.id == id);
+    return getAnimalCellViewModels()
+        .firstWhere((element) => element.animal.id == id);
   }
 
   List<AnimalCellViewModel> getAnimalsByIds(List<String> ids) {
@@ -38,7 +56,6 @@ class SearchViewModel extends foundation.ChangeNotifier {
 
     return result;
   }
-
 }
 
 class AnimalCellViewModel extends foundation.ChangeNotifier {
