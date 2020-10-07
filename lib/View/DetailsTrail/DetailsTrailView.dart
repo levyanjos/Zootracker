@@ -6,6 +6,7 @@ import 'package:zootracker/Model/Trail.dart';
 import 'package:zootracker/View/AnimalRegistration/AnimalRegistrationView.dart';
 import 'package:zootracker/View/Components/BarButtonItem.dart';
 import 'package:zootracker/View/Components/Bars/CustomNavBar.dart';
+import 'package:zootracker/View/Components/Bars/SearchBar.dart';
 import 'package:zootracker/View/Components/CircleImageViewCell.dart';
 import 'package:zootracker/View/Components/CustomUIButton.dart';
 import 'package:zootracker/View/Components/FromView.dart';
@@ -43,7 +44,8 @@ class _DetailsTrailViewState extends State<DetailsTrailView> {
                 leading: BarButtonItem(
                   child: Icon(
                     Icons.add,
-                    color: CupertinoColors.label,
+                    color: Styles.actionColor,
+
                   ),
                   callBack: () {
                     _pushToCorrectPresentation(context, false, AnimalRegistration());
@@ -68,13 +70,13 @@ class _DetailsTrailViewState extends State<DetailsTrailView> {
         BarButtonItem(
           child: Icon(
             Icons.edit,
-            color: CupertinoColors.label,
+            color: Styles.actionColor,
           ),
         ),
         BarButtonItem(
           child: Icon(
             Icons.delete,
-            color: CupertinoColors.label,
+            color: Styles.actionColor,
           ),
         ),
       ],

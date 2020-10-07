@@ -1,16 +1,17 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:zootracker/Model/Trail.dart';
+import 'package:provider/provider.dart';
+import 'package:zootracker/Model/Animal.dart';
 import 'package:zootracker/View/AnimalDetails/SimilarPawsView.dart';
 import 'package:zootracker/View/Components/Bars/CustomNavBar.dart';
+import 'package:zootracker/View/Components/Bars/SearchBar.dart';
+import 'package:zootracker/ViewModel/SearchViewModel.dart';
 
 class AnimalDetailsView extends StatefulWidget {
-  final Trail trilha;
-  var patasParecidas = [];
+  final Animal animal;
 
-  AnimalDetailsView({@required this.trilha}) : assert(trilha != null);
+  AnimalDetailsView({@required this.animal}) : assert(animal != null);
 
   @override
   _AnimalDetailsViewState createState() => _AnimalDetailsViewState();
@@ -19,51 +20,60 @@ class AnimalDetailsView extends StatefulWidget {
 class _AnimalDetailsViewState extends State<AnimalDetailsView> {
   @override
   Widget build(BuildContext context) {
+
     return CustomNavBar(
-      title: Text(widget.trilha.title),
+      title: Text(widget.animal.nome),
       uniqueHeroTag: "AnimalDetailsViewNavBar",
       body: MaterialApp(
+      theme: ThemeData(
+          appBarTheme: AppBarTheme(
+            color: Colors.white,
+          )),
         home: DefaultTabController(
           length: 3,
           child: Scaffold(
             appBar: AppBar(
               bottom: TabBar(
+                indicatorColor: Styles.actionColor,
                 tabs: [
-                  Tab(icon: Icon(Icons.directions_car)),
-                  Tab(icon: Icon(Icons.location_on)),
-                  Tab(icon: Icon(Icons.directions_bike)),
+                  Tab(icon: Image.asset(
+                    "assets/images/capivara.png",
+                    width: 25,
+                    height: 25,
+                  ),),
+                  Tab(icon: Icon(Icons.location_on, color: Styles.actionColor,)),
+                  Tab(icon: Icon(CupertinoIcons.paw_solid, color: Styles.actionColor,)),
                 ],
               ),
             ),
             body: TabBarView(
               children: [
                 Container(
+                  color: Styles.backgroundColor,
                   child: ListView(
                     children: <Widget>[
-                      _buildSectionWithImage("",
-                          "Loremipsum...hsu ahsua suhau sauh suah usha uhhsauhs shuahsuhaus hauhsua suaushauh suahsuahs uhausuah suhauhsuah suhaushu ahsuhauhsuahushaushuahsuahsuahsuahushau.\n Loremipsum...hsu ahsua suhau sauh suah usha uhhsauhs shuahsuhaus hauhsua suaushauh suahsuahs uhausuah suhauhsuah suhaushu ahsuhauhsuahushaushuahsuahsuahsuahushau")
+                      _buildSectionWithImage(widget.animal.imagem, widget.animal.descricao),
+                    ]
+                  ),
+                ),
+                Container(
+                  color: Styles.backgroundColor,
+                  child: ListView(
+                    children: <Widget>[
+                      _buildSectionWithImage(widget.animal.localizacao.imagemLocal, widget.animal.localizacao.nomeLocal),
                     ],
                   ),
                 ),
                 Container(
-                  child: ListView(
-                    children: <Widget>[
-                      _buildSectionWithImage("",
-                          "Loremipsum...hsu ahsua suhau sauh suah usha uhhsauhs shuahsuhaus hauhsua suaushauh suahsuahs uhausuah suhauhsuah suhaushu ahsuhauhsuahushaushuahsuahsuahsuahushau.\n Loremipsum...hsu ahsua suhau sauh suah usha uhhsauhs shuahsuhaus hauhsua suaushauh suahsuahs uhausuah suhauhsuah suhaushu ahsuhauhsuahushaushuahsuahsuahsuahushau")
-                    ],
-                  ),
-                ),
-                Container(
+                  color: Styles.backgroundColor,
                   child: ListView(
                     children: <Widget>[
                       Column(
                         children: [
-                          widget.patasParecidas.length == 0
+                          widget.animal.pegada.pegadasSimi.length > 0
                               ? _buildAlertToClousesApparence()
                               : Container(),
-                          _buildSectionWithImage("",
-                              "Loremipsum...hsu ahsua suhau sauh suah usha uhhsauhs shuahsuhaus hauhsua suaushauh suahsuahs uhausuah suhauhsuah suhaushu ahsuhauhsuahushaushuahsuahsuahsuahushau."),
-                        ],
+                          _buildSectionWithImage("","")],
                       )
                     ],
                   ),
@@ -90,7 +100,11 @@ class _AnimalDetailsViewState extends State<AnimalDetailsView> {
                   shape: BoxShape.rectangle,
                   image: DecorationImage(
                       fit: BoxFit.fitWidth,
-                      image: NetworkImage("https://i.imgur.com/BoN9kdC.png"))),
+                      image: imagePath != ""
+                          ? AssetImage('assets/images/${imagePath}')
+                          : AssetImage('assets/images/notFound.jpg')
+                  ),
+              ),
             ),
           ),
           Padding(
@@ -108,21 +122,25 @@ class _AnimalDetailsViewState extends State<AnimalDetailsView> {
   Widget _buildAlertToClousesApparence() {
     return GestureDetector(
       child: Container(
-        color: Colors.red,
+        color: Styles.warningColor,
         height: 40,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Spacer(),
-            Icon(Icons.info),
+            Icon(Icons.info, color: Colors.white,),
             Spacer(),
-            Text("Clique aqui para ver pegadas parecidas!"),
+            Text("Clique aqui para ver pegadas parecidas!", style: TextStyle(color: Colors.white),),
             Spacer()
           ],
         ),
       ),
       onTap: () {
-        _pushToCorrectPresentation(context, false, SimilarPawsView(animals: TrailRepository.mockTrails,));
+        _pushToCorrectPresentation(context, false,
+          ChangeNotifierProvider<SearchViewModel>(
+            create: (_) => SearchViewModel()..loadAnimals(),
+            child: SimilarPawsView(animalsIds: widget.animal.pegada.pegadasSimi,),
+          ));
       },
     );
   }

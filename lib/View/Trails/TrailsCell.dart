@@ -1,6 +1,7 @@
 //stf
 
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
 import 'package:zootracker/Model/Trail.dart';
 
 class TrailCell extends StatefulWidget {
@@ -20,27 +21,38 @@ class _TrailCellState extends State<TrailCell> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: <Widget>[
-        Image.network("https://www.w3schools.com/w3css/img_lights.jpg"),
+        Text(
+          trail.title,
+          style: TextStyle(fontSize: 22, fontWeight: FontWeight.normal),
+        ),
+        Container(
+          width: 100,
+          height: 240,
+          decoration: BoxDecoration(
+            shape: BoxShape.rectangle,
+            image: DecorationImage(
+              fit: BoxFit.fitWidth,
+              image: NetworkImage("https://www.w3schools.com/w3css/img_lights.jpg"),
+            ),
+          ),
+        ),
         Column(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(top: 8, bottom: 4),
+              padding: const EdgeInsets.only(top: 0, bottom: 4),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                      "${trail.date.day}/${trail.date.month}/${trail.date.year}",
-                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),),
+                  Text(trail.location ?? "Sem localização",
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  ),
+                  Text(DateFormat.yMMMd().add_jm().format(trail.date),
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  ),
                 ],
               ),
-            ),
-            Row(
-              children: [
-                Text(
-                  trail.title,
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.normal),
-                ),
-              ],
             ),
           ],
           crossAxisAlignment: CrossAxisAlignment.end,

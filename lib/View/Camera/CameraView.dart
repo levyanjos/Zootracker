@@ -7,6 +7,7 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:zootracker/View/Camera/PreviewImageView.dart';
 import 'package:zootracker/View/Components/Bars/CustomNavBar.dart';
+import 'package:zootracker/View/Components/Bars/SearchBar.dart';
 
 class CameraView extends StatefulWidget {
 
@@ -27,23 +28,26 @@ class _CameraViewState extends State<CameraView> {
         title: Text("Câmera"),
         uniqueHeroTag: "cameraNavBar",
         body: SafeArea(
-          child: Column(
-            children: <Widget>[
-              Expanded(
-                flex: 1,
-                child: _cameraPreviewWidget(),
-              ),
-              SizedBox(height: 10.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  _cameraTogglesRowWidget(),
-                  _captureControlRowWidget(context),
-                  Spacer()
-                ],
-              ),
-              SizedBox(height: 20.0)
-            ],
+          child: Container(
+            color: Styles.backgroundColor,
+            child: Column(
+              children: <Widget>[
+                Expanded(
+                  flex: 1,
+                  child: _cameraPreviewWidget(),
+                ),
+                SizedBox(height: 10.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    _cameraTogglesRowWidget(),
+                    _captureControlRowWidget(context),
+                    Spacer()
+                  ],
+                ),
+                SizedBox(height: 20.0)
+              ],
+            ),
           ),
         ),
     );
@@ -112,12 +116,14 @@ class _CameraViewState extends State<CameraView> {
 
   Widget _cameraPreviewWidget() {
     if (controller == null || !controller.value.isInitialized) {
-      return const Text(
-        'Loading',
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 20.0,
-          fontWeight: FontWeight.w900,
+      return Center(
+        child: const Text(
+          'Carregando...',
+          style: TextStyle(
+            color: Styles.actionColor,
+            fontSize: 20.0,
+            fontWeight: FontWeight.w900,
+          ),
         ),
       );
     }
@@ -138,7 +144,7 @@ class _CameraViewState extends State<CameraView> {
           children: [
             FloatingActionButton(
                 child: Icon(Icons.camera),
-                backgroundColor: Colors.blueGrey,
+                backgroundColor: Styles.actionColor,
                 onPressed: () {
                   _onCapturePressed(context);
                 })
@@ -161,7 +167,7 @@ class _CameraViewState extends State<CameraView> {
         alignment: Alignment.centerLeft,
         child: FlatButton.icon(
             onPressed: _onSwitchCamera,
-            icon: Icon(_getCameraLensIcon(lensDirection)),
+            icon: Icon(_getCameraLensIcon(lensDirection), color: Styles.actionColor,),
             label: Text(
                 "${lensDirection.toString().substring(lensDirection.toString().indexOf('.') + 1)}")),
       ),

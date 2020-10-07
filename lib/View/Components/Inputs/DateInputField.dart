@@ -32,6 +32,7 @@ class _DateInputFieldState extends State<DateInputField> {
       {this.title, this.date, this.placeholder, this.controller, this.isEnable});
 
   _selectDate(BuildContext context) async {
+    print("hereee");
     final DateTime picked = await showDatePicker(
       context: context,
       initialDate: date, // Refer step 1
