@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:zootracker/View/Components/Bars/SearchBar.dart';
 
 class CustomUIButton extends StatefulWidget {
   final Function callBack;
@@ -23,12 +24,12 @@ class _CustomUIButtonState extends State<CustomUIButton> {
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(22.0)),
         elevation: 18.0,
-        color: Color(0xFF801E48),
+        color: Styles.actionColor,
         clipBehavior: Clip.antiAlias, // Add This
         child: MaterialButton(
           minWidth: 200.0,
           height: 42,
-          color: Color(0xFF801E48),
+          color: Styles.actionColor,
           child: Text(
             "Gerar\nDocumento",
             style: TextStyle(fontSize: 16.0, color: Colors.white),
