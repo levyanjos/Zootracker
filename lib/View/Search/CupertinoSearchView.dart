@@ -6,7 +6,6 @@ import 'package:zootracker/View/AnimalDetails/AnimalDetailsView.dart';
 import 'package:zootracker/View/Components/BarButtonItem.dart';
 import 'package:zootracker/View/Components/Bars/SearchBar.dart';
 import 'package:zootracker/View/Filter/ApplyFilterView.dart';
-import 'package:zootracker/ViewModel/SearchViewModel.dart';
 
 
 class CupertinoSearchView extends StatefulWidget {

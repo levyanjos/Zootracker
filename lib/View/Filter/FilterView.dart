@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:zootracker/Model/Animal.dart';
 import 'package:zootracker/View/Components/Bars/SearchBar.dart';
 
+
 class FilterView extends StatefulWidget {
   final Animal animal;
 
@@ -277,7 +278,6 @@ class _FilterViewState extends State<FilterView> {
         : _buildCupertinioPicker(title, options, setVariable, isFirst);
   }
 }
-
 
 // _buildSizeSection(
 // "Tamanho das pegadas anteriores",

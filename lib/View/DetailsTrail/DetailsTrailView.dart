@@ -45,6 +45,7 @@ class _DetailsTrailViewState extends State<DetailsTrailView> {
                   child: Icon(
                     Icons.add,
                     color: Styles.actionColor,
+
                   ),
                   callBack: () {
                     _pushToCorrectPresentation(context, false, AnimalRegistration());

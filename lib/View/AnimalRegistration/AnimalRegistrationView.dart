@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:zootracker/View/Components/BarButtonItem.dart';
 import 'package:zootracker/View/Components/Bars/CustomNavBar.dart';
 import 'package:zootracker/View/Components/Bars/SearchBar.dart';
+
 import 'package:zootracker/View/Components/CircleImageViewCell.dart';
 import 'package:zootracker/View/Components/FromView.dart';
 import 'package:zootracker/View/Components/SectionHeaderView.dart';
@@ -34,6 +35,7 @@ class _AnimalRegistrationState extends State<AnimalRegistration> {
                 flexibleSpace: TabBar(
                   labelColor: Styles.actionColor,
                     indicatorColor: Styles.actionColor,
+
                     tabs: [
                       Tab(icon: Icon(Icons.library_books)),
                       Tab(icon: Icon(CupertinoIcons.paw_solid)),
