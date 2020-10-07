@@ -104,4 +104,16 @@ abstract class Styles {
   static const Color searchCursorColor = Color.fromRGBO(0, 122, 255, 1);
 
   static const Color searchIconColor = Color.fromRGBO(128, 128, 128, 1);
+
+  static const Color backgroundColor = Color.fromRGBO(235, 230, 211, 1);
+
+  static const Color actionColor = Color(0xff013E39);
+
+  static const Color placehouderColor = Color.fromRGBO(243, 243, 243, 1);
+
+  static const Color selectedbackgroundColor = Color.fromRGBO(206, 234, 214, 1);
+
+  static const Color warningColor = Color.fromRGBO(143, 52, 40, 1);
+
+
 }

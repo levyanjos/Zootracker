@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:zootracker/Model/Trail.dart';
+import 'package:zootracker/Model/Animal.dart';
 
 class AnimalCell extends StatefulWidget {
-  final Trail trilha;
+  final Animal animal;
 
-  AnimalCell({@required this.trilha}) : assert(trilha != null);
+  AnimalCell({@required this.animal}) : assert(animal != null);
 
   @override
   _AnimalCellState createState() => _AnimalCellState();
@@ -22,7 +22,7 @@ class _AnimalCellState extends State<AnimalCell> {
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text(widget.trilha.title,
+                child: Text(widget.animal.nome,
                     style:
                     TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),
               ),
@@ -35,12 +35,13 @@ class _AnimalCellState extends State<AnimalCell> {
                 shape: BoxShape.rectangle,
                 image: DecorationImage(
                     fit: BoxFit.fitWidth,
-                    image: NetworkImage("https://i.imgur.com/BoN9kdC.png"))),
+                    image: AssetImage('assets/images/${widget.animal.imagem}'),
+                ),
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Text(
-                "Loremipsum...hsu ahsua suhau sauh suah usha uhhsauhs shuahsuhaus hauhsua suaushauh suahsuahs uhausuah suhauhsuah suhaushu ahsuhauhsuahushaushuahsuahsuahsuahushau.",
+            child: Text(widget.animal.descricao,
                 maxLines: 3,
                 style:
                 TextStyle(fontSize: 14, fontWeight: FontWeight.normal)),

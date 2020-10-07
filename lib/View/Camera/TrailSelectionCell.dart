@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
+import 'package:intl/intl.dart';
+import 'package:zootracker/View/Components/Bars/SearchBar.dart';
 
 class TrailSelectionCell extends StatefulWidget {
   final bool selected;
   final Function callBack;
   final String title;
   final String location;
-  final String date;
+  final DateTime date;
 
   TrailSelectionCell(
       {this.title, this.location, this.date, this.selected, this.callBack});
@@ -22,7 +24,7 @@ class _TrailSelectionCellState extends State<TrailSelectionCell> {
         setState(() {});
       },
       child: Container(
-        color: widget.selected == true ? CupertinoColors.inactiveGray : CupertinoColors.white,
+        color: widget.selected == true ? Styles.selectedbackgroundColor : CupertinoColors.white,
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -39,8 +41,8 @@ class _TrailSelectionCellState extends State<TrailSelectionCell> {
                       fontWeight: FontWeight.normal),
                     ),
                     widget.selected == true
-                        ? Icon(CupertinoIcons.circle_filled)
-                        : Icon(CupertinoIcons.circle),
+                        ? Icon(CupertinoIcons.circle_filled, color: Styles.actionColor,)
+                        : Icon(CupertinoIcons.circle, color: Styles.actionColor),
                   ],
                 ),
               ),
@@ -58,7 +60,7 @@ class _TrailSelectionCellState extends State<TrailSelectionCell> {
                 padding: const EdgeInsets.only(top: 3, bottom: 6),
                 child: Row(
                   children: [
-                    Text(widget.date,
+                    Text(DateFormat.yMMMd().add_jm().format(widget.date),
                       style: TextStyle(fontSize: 18),
                     ),
                   ],

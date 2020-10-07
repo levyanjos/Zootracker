@@ -1,15 +1,39 @@
-import 'dart:io';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart' as foundation;
-import 'package:flutter/material.dart';
 
 class Trail {
+  final String id;
   final String bannerImage;
   final String title;
   final DateTime date;
+  final String location;
+  final String notes;
 
-  const Trail({this.bannerImage, this.title, this.date});
+  const Trail(
+      {this.id,
+      this.bannerImage,
+      this.title,
+      this.date,
+      this.location,
+      this.notes});
+}
+
+class animalRegister {
+  final String id;
+  final String bannerImage;
+  final String title;
+  final DateTime date;
+  final String location;
+  final String notes;
+  final String animalID;
+
+  const animalRegister(
+      {this.id,
+      this.bannerImage,
+      this.title,
+      this.date,
+      this.location,
+      this.notes,
+      this.animalID});
 }
 
 class TrailRepository {

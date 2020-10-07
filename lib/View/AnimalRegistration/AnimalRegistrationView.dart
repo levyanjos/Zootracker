@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zootracker/View/Components/BarButtonItem.dart';
 import 'package:zootracker/View/Components/Bars/CustomNavBar.dart';
+import 'package:zootracker/View/Components/Bars/SearchBar.dart';
 import 'package:zootracker/View/Components/CircleImageViewCell.dart';
 import 'package:zootracker/View/Components/FromView.dart';
 import 'package:zootracker/View/Components/SectionHeaderView.dart';
@@ -28,8 +29,11 @@ class _AnimalRegistrationState extends State<AnimalRegistration> {
             length: 2,
             child: Scaffold(
               appBar: AppBar(
-                toolbarHeight: 30,
+                backgroundColor: Colors.white,
+                toolbarHeight: 28,
                 flexibleSpace: TabBar(
+                  labelColor: Styles.actionColor,
+                    indicatorColor: Styles.actionColor,
                     tabs: [
                       Tab(icon: Icon(Icons.library_books)),
                       Tab(icon: Icon(CupertinoIcons.paw_solid)),

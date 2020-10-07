@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:zootracker/View/Components/Bars/SearchBar.dart';
 
 class CustomImagePicker extends StatefulWidget {
   File image;
@@ -50,7 +51,7 @@ class _CustomImagePickerState extends State<CustomImagePicker> {
                     )
                   : Container(
                       height: 150,
-                      color: Colors.grey,
+                      color: Styles.placehouderColor,
                     ),
               this.isEnable
                   ? Column(

@@ -1,13 +1,11 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:zootracker/Model/Trail.dart';
 import 'package:zootracker/View/AnimalDetails/AnimalCell.dart';
-import 'package:zootracker/View/AnimalDetails/AnimalDetailsView.dart';
 import 'package:zootracker/View/Components/BarButtonItem.dart';
 import 'package:zootracker/View/Components/Bars/CustomNavBar.dart';
 import 'package:zootracker/View/Filter/FilterView.dart';
+import 'package:zootracker/ViewModel/SearchViewModel.dart';
 
 class MaterialSearchBar extends StatefulWidget {
   @override
@@ -17,8 +15,8 @@ class MaterialSearchBar extends StatefulWidget {
 class _MaterialSearchBarState extends State<MaterialSearchBar> {
   @override
   Widget build(BuildContext context) {
-    final model = Provider.of<TrailsViewModel>(context);
-    final results = model.getTrailCellsViewModel();
+    final model = Provider.of<SearchViewModel>(context);
+    final results = model.getAnimalCellViewModels();
 
     return CustomNavBar(
       title: Text("Pesquisa"),
@@ -48,13 +46,13 @@ class _MaterialSearchBarState extends State<MaterialSearchBar> {
           itemCount: results.length,
           itemBuilder: (context, index) {
             return GestureDetector(
-              child: AnimalCell(trilha: results[index].trail),
+              child: AnimalCell(animal: results[index].animal),
               onTap: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     fullscreenDialog: false,
-                    builder: (context) => AnimalDetailsView(trilha: results[index].trail),
+                    builder: (context) => Container(),
                   ),
                 );
               },

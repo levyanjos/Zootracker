@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:zootracker/Model/Trail.dart';
 import 'package:zootracker/View/Components/BarButtonItem.dart';
 import 'package:zootracker/View/Components/Bars/CustomNavBar.dart';
+import 'package:zootracker/View/Components/Bars/SearchBar.dart';
 import 'package:zootracker/View/Components/FromView.dart';
 import 'package:zootracker/ViewControllers/FormViewController.dart';
 
@@ -31,7 +32,7 @@ class _CreateTrailsState extends State<CreateTrails> {
 
   Widget build(BuildContext context) {
     return CustomNavBar(
-      title: Text("Criar Trilha"),
+      title: Text("Criar Caderno"),
       uniqueHeroTag: "createTrailsNavBar",
       body: FormView(
         controller: controller,
@@ -43,7 +44,7 @@ class _CreateTrailsState extends State<CreateTrails> {
           child: Text(
             'Salvar',
             style: TextStyle(
-              color: CupertinoColors.label,
+              color: Styles.actionColor,
             ),
           ),
         )
