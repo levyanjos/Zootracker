@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:zootracker/View/Components/Bars/SearchBar.dart';
 import 'package:zootracker/View/Components/Inputs/CustomImagePicker.dart';
 import 'package:zootracker/View/Components/Inputs/DateInputField.dart';
 import 'package:zootracker/View/Components/Inputs/TextInputField.dart';
@@ -25,6 +26,7 @@ class _FormViewState extends State<FormView> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        color: Styles.backgroundColor,
         child: Padding(
           padding: const EdgeInsets.only(top: 0),
           child: ListView(

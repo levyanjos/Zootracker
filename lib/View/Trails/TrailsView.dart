@@ -13,7 +13,7 @@ class TrailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomNavBar(
-        title: Text("Trilhas"), uniqueHeroTag: 'tab1', body: TrailsContainerView());
+        title: Text("Caderno de Campo"), uniqueHeroTag: 'TrailsViewNavBar', body: TrailsContainerView());
   }
 }
 

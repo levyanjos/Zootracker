@@ -109,4 +109,6 @@ abstract class Styles {
 
   static const Color actionColor = Color(0xff013E39);
 
+  static const Color placehouderColor = Color.fromRGBO(243, 243, 243, 1);
+
 }
