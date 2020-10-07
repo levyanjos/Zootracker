@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zootracker/Model/Animal.dart';
+import 'package:zootracker/View/Components/Bars/SearchBar.dart';
 
 class FilterView extends StatefulWidget {
   final Animal animal;
@@ -23,40 +24,43 @@ class _FilterViewState extends State<FilterView> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      children: <Widget>[
-        _buildSizeSection(
-          "Demais Dados",
-          <Widget>[
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: _buildPicker(
-                  "Número de dígitos:", options, (value) {
-                    dropdownValue = value;
-                    }, true),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: _buildPicker(
-                  "Formato de dígitos:", options, (value) { dropdownValue = value; }, false),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: _buildPicker(
-                  "Presença de garras:", options, (value) { dropdownValue = value; }, false),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: _buildPicker(
-                  "Ordem taxonômica:", options, (value) { dropdownValue = value; }, false),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: _buildPicker("Estado:", options, (value) { dropdownValue = value; }, false),
-            ),
-          ],
-        )
-      ],
+    return Container(
+      color: Styles.backgroundColor,
+      child: ListView(
+        children: <Widget>[
+          _buildSizeSection(
+            "Demais Dados",
+            <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: _buildPicker(
+                    "Número de dígitos:", options, (value) {
+                      dropdownValue = value;
+                      }, true),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: _buildPicker(
+                    "Formato de dígitos:", options, (value) { dropdownValue = value; }, false),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: _buildPicker(
+                    "Presença de garras:", options, (value) { dropdownValue = value; }, false),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: _buildPicker(
+                    "Ordem taxonômica:", options, (value) { dropdownValue = value; }, false),
+              ),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: _buildPicker("Estado:", options, (value) { dropdownValue = value; }, false),
+              ),
+            ],
+          )
+        ],
+      ),
     );
   }
 
