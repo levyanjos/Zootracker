@@ -9,7 +9,7 @@ import 'package:zootracker/ViewModel/SearchViewModel.dart';
 import 'package:zootracker/main.dart';
 
 class CustomTabBar extends StatefulWidget {
-   CustomTabBar({Key key}) : super(key: key);
+  CustomTabBar({Key key}) : super(key: key);
 
   @override
   _CustomTabBarState createState() => _CustomTabBarState();
@@ -20,19 +20,40 @@ class _CustomTabBarState extends State<CustomTabBar> {
     return CupertinoTabScaffold(
         tabBar: CupertinoTabBar(items: [
           BottomNavigationBarItem(
-              icon: Icon(Icons.list), title: Text("Trilhas")),
+              icon: Image.asset(
+                "assets/images/caderno.png",
+                width: 40,
+                height: 40,
+              ),
+              title: Text("Caderno De Campo")),
           BottomNavigationBarItem(
-              icon: Icon(Icons.camera), title: Text("Câmera")),
+              icon: Image.asset(
+                "assets/images/camera.png",
+                width: 40,
+                height: 40,
+              ),
+              title: Text("Câmera")),
           BottomNavigationBarItem(
-              icon: Icon(Icons.search), title: Text("Pesquisa")),
+              icon: Image.asset(
+                "assets/images/busca.png",
+                width: 40,
+                height: 40,
+              ),
+              title: Text("Busca")),
           BottomNavigationBarItem(
-              icon: Icon(Icons.more), title: Text("Feedback")),
+              icon: Image.asset(
+                "assets/images/feedback.png",
+                width: 25,
+                height: 25,
+              ),
+              title: Text("Feedback")),
         ]),
         tabBuilder: (context, index) {
           if (index == 0) {
             return CupertinoTabView(
               navigatorKey: firstTabNavKey,
-              builder: (BuildContext context) => ChangeNotifierProvider<TrailsViewModel>(
+              builder: (BuildContext context) =>
+                  ChangeNotifierProvider<TrailsViewModel>(
                 create: (_) => TrailsViewModel()..loadTrails(),
                 child: TrailsView(),
               ),
@@ -45,12 +66,13 @@ class _CustomTabBarState extends State<CustomTabBar> {
           } else if (index == 2) {
             return CupertinoTabView(
               navigatorKey: thirdTabNavKey,
-              builder: (BuildContext context) => ChangeNotifierProvider<SearchViewModel>(
+              builder: (BuildContext context) =>
+                  ChangeNotifierProvider<SearchViewModel>(
                 create: (_) => SearchViewModel()..loadAnimals(),
                 child: SearchView(),
               ),
             );
-          }  else {
+          } else {
             return CupertinoTabView(
               navigatorKey: fifthTabNavKey,
               builder: (BuildContext context) => TrailsView(),

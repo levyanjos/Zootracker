@@ -1,8 +1,10 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:path/path.dart';
 import 'package:zootracker/Model/Trail.dart';
 import 'package:zootracker/View/Components/Bars/CustomNavBar.dart';
+import 'package:zootracker/View/Components/Bars/SearchBar.dart';
 import 'package:zootracker/View/CreateTrail/CreateTrailView.dart';
 import 'package:zootracker/View/DetailsTrail/DetailsTrailView.dart';
 import 'package:zootracker/View/Trails/TrailsCell.dart';
@@ -44,13 +46,14 @@ class TrailsContainerView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        color: Styles.backgroundColor,
         child: ListView.separated(
           separatorBuilder: (context, index) => Divider(color: Colors.grey),
           itemCount: TrailRepository.mockTrails.length,
           itemBuilder: (BuildContext context, int index) {
             return Padding(
               padding: const EdgeInsets.only(
-                  top: 16, left: 16, right: 16, bottom: 0),
+                  top: 8, left: 32, right: 32, bottom: 0),
               child: GestureDetector(
                 onTap: () => didSelectTrailInList(context, TrailRepository.mockTrails[index]),
                 child: TrailCell(
@@ -64,6 +67,7 @@ class TrailsContainerView extends StatelessWidget {
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 50.0),
         child: FloatingActionButton(
+          backgroundColor: Styles.actionColor,
           tooltip: 'Increment Counter',
           child: const Icon(Icons.add),
           onPressed: () =>

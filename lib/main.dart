@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:zootracker/View/Components/Bars/CustomTabBar.dart';
+import 'package:zootracker/View/Components/Bars/SearchBar.dart';
 
 final GlobalKey<NavigatorState> firstTabNavKey = GlobalKey<NavigatorState>();
 final GlobalKey<NavigatorState> secondTabNavKey = GlobalKey<NavigatorState>();
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         ? CupertinoApp(
             title: 'Flutter Demo',
             theme: CupertinoThemeData(
-              primaryColor: Colors.blue,
+              primaryColor: Styles.actionColor,
             ),
             home: CustomTabBar(),
             debugShowCheckedModeBanner: false,
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         : MaterialApp(
             title: 'Flutter Demo',
             theme: ThemeData(
-              primarySwatch: Colors.blue,
+              primarySwatch: Styles.actionColor,
               visualDensity: VisualDensity.adaptivePlatformDensity,
             ),
             home: CustomTabBar(),
